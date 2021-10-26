@@ -89,7 +89,10 @@ namespace DataAccessLayer
                 throw new SerializerException("Podcasts.xml", "Could not deserialize file");
             }
 
+            public List<Avsnitt> RssFeeder(string urlInput)
+            {
 
+            }
             //    Reader reader = XmlReader.Create(url);
             //SyndicationFeed feed = SyndicationFeed.Load(reader);
             //reader.Close();
