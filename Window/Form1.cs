@@ -17,22 +17,21 @@ namespace Window
             InitializeComponent();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbFrekvens_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnNyPodcast_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
+       
 
-        }
+        
 
-        private void label8_Click(object sender, EventArgs e)
+        private void btnSparaPodcast_Click(object sender, EventArgs e)
         {
 
         }
