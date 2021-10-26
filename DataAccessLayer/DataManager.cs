@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 using System.IO;
 using Model;
 using DataAccessLayer.ExceptionClass;
-//hejhej
+
 namespace DataAccessLayer
 {
     internal class DataManager
