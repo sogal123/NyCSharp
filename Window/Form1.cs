@@ -19,7 +19,7 @@ namespace Window
         {
             InitializeComponent();
             podcastController = new PodcastController();
-            fyllFeed();
+           // fyllFeed();
             fyllCb();
         }
 
@@ -75,8 +75,8 @@ namespace Window
                          }
 
                      */
-            }
-        }
+            
+        
         private void fyllCb()
             {
 
