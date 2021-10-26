@@ -59,5 +59,7 @@ namespace DataAccessLayer.Repository
         {
             dataManager.SerializePodcast(podcastLista);
         }
+
+
     }
 }

@@ -28,7 +28,7 @@ namespace Window
         {
             
             
-            podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text);
+            podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
 
 
             //cbFrekvens.Text,string namn, int uppdateringsFrekvens, string url, string kategori, List< Avsnitt > avsnitt

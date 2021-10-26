@@ -25,13 +25,25 @@ namespace BusinessLayer
         {
             return podcastRepository.GetAll();
         }
-        public void CreatePodcast(string namn, string url, string uppdateringsFrekvens)
+        public void CreatePodcast(string namn, string url, string uppdateringsFrekvens, string kategori)
         {/*, string kategori, List<Avsnitt> avsnitt*/
-            Podcast podcast = new Podcast(namn, url, uppdateringsFrekvens); /*,  kategori, avsnitt*/
+            Podcast podcast = new Podcast(namn, url, uppdateringsFrekvens, kategori); /*,  , avsnitt*/
             podcastRepository.Create(podcast);
         }
         
+        public void DeletePodcast(int index)
+        {
+            podcastRepository.Delete(index);
         }
 
+        public string GetPodcastAtIndex(int i)
+        {
+            var podcastLista = podcastRepository.GetAll();
+            Podcast podd = podcastLista[i];
+            string poddnamn = podd.Namn;
+            return poddnamn;
+        }
     }
+
+}
 
