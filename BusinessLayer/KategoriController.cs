@@ -15,13 +15,17 @@ namespace BusinessLayer
             kategoriRepository = new KategoriRepository();
         }
     
-    
     public void CreateKategori(Kategori kategori)
         {
       
             kategoriRepository.Create(kategori);
             
         }
+
+    //public void DeleteKategori(string kategoriNamn)
+        //{
+        //    kategoriRepository.Delete(kategoriNamn);
+      //  }
     
         
     }
