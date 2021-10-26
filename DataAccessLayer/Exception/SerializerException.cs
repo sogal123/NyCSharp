@@ -6,7 +6,14 @@ namespace DataAccessLayer.ExceptionClass
 {
     public class SerializerException : Exception
     {
-        public string fileName { get; }
+        private string fileName;
+        public string FileName 
+        { 
+            get
+            {
+                return fileName;
+            }
+        }
 
         public SerializerException(string fileName, string message) : base(message)
         {

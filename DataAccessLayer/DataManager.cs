@@ -33,20 +33,23 @@ namespace DataAccessLayer
 
         public List<Podcast> DeserializePodcast()
         {
+            List<Podcast> lista;
             try
             {
-                List<Podcast> lista;
+                
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
                 using (FileStream fileStreamIn = new FileStream("Podcasts.xml", FileMode.Open, FileAccess.Read))
                 {
                     lista = (List<Podcast>)xmlSerializer.Deserialize(fileStreamIn);
+                    
                 }
                 return lista;
+
 
             }
             catch (Exception)
             {
-                throw new SerializerException("Podcasts.xml", "Could not deserialize file");
+                throw SerializerException("Podcasts.xml", "Could not deserialize file");
             }
         }
 
