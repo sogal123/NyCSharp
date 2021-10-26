@@ -9,11 +9,6 @@ namespace Model
     public class Podcast
     {
 
-        //public override string TypAvEntitet()
-        //{
-        //    return "Objektet är en podcast";
-        //}
-
 
         public string Namn { get; set; }
         public string Url { get; set; }
