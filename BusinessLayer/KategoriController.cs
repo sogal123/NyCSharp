@@ -26,11 +26,12 @@ namespace BusinessLayer
             kategoriRepository.Delete(index);
         }
 
-    public void UpdateKategori(int index)
+    public void UpdateKategori(int index, Kategori kategori)
         {
-            kategoriRepository.Update(index);
+            kategoriRepository.Update(index, kategori);
         }
     
+    public void
         
     }
 }
