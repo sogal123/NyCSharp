@@ -10,8 +10,9 @@ namespace BusinessLayer
     public class PodcastController 
     {
        
-            PodcastRepository podcastRepository;
+            IRepository<Podcast> podcastRepository;
             List<Podcast> podcastList;
+
             public PodcastController()
             {
                 podcastRepository = new PodcastRepository();
@@ -19,7 +20,13 @@ namespace BusinessLayer
 
 
             }
-
+        public void CreatePodcast(string namn, string url)
+        {/*, int uppdateringsFrekvens,, string kategori, List<Avsnitt> avsnitt*/
+            Podcast podcast = null;
+            podcast = new Podcast(namn, url); /*, uppdateringsFrekvens kategori, avsnitt*/
+            podcastRepository.Create(podcast);
+        }
+        
         }
 
     }
