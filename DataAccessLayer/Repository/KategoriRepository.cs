@@ -2,8 +2,7 @@
 using Model;
 using System.Collections.Generic;
 using System.Text;
-
-
+using DataAccessLayer.ExceptionClass;
 
 namespace DataAccessLayer.Repository
 {
@@ -35,7 +34,16 @@ namespace DataAccessLayer.Repository
 
         public List<Kategori> GetAll()
         {
-            return dataManager.DeserializeKategori();
+            List<Kategori> podcastLista = new List<Kategori>();
+            try
+            {
+                podcastLista = dataManager.DeserializeKategori();
+            }
+            catch (SerializerException error)
+            {
+                Console.WriteLine(error.Message + ". Ingen lista att returnera");
+            }
+            return podcastLista;
         }
 
         public void Update(int index, Kategori kategori)

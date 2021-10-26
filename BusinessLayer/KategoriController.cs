@@ -11,14 +11,17 @@ namespace BusinessLayer
         readonly IRepository<Kategori> kategoriRepository;
         List<Kategori> kategoriLista;
 
+        public KategoriController()
+        {
+            kategoriRepository = new KategoriRepository();
+            kategoriLista = kategoriRepository.GetAll();
+        }
+       
         public List<Kategori> GetAll()
         {
             return kategoriRepository.GetAll();
         }
-        public KategoriController()
-        {
-            kategoriRepository = new KategoriRepository();
-        }
+        
     
     public void CreateKategori(Kategori kategori)
         {
