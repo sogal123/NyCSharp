@@ -11,6 +11,10 @@ namespace BusinessLayer
         readonly IRepository<Kategori> kategoriRepository;
         List<Kategori> kategoriLista;
 
+        public List<Kategori> GetAll()
+        {
+            return kategoriRepository.GetAll();
+        }
         public KategoriController()
         {
             kategoriRepository = new KategoriRepository();
@@ -30,7 +34,6 @@ namespace BusinessLayer
         {
             kategoriRepository.Update(index, kategori);
         }
-    
     
         
     }
