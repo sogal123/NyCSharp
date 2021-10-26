@@ -39,29 +39,43 @@ namespace Window
 
 
 
-        private void btnSparaPodcast_Click(object sender, EventArgs e)
-        {
+        //private void btnSparaPodcast_Click(object sender, EventArgs e)
+        //{
+        //    lvPodcast.Clear();
+        //    var podcastLista = podcastController.getAll();
 
-        }
+        //    foreach (var podd in podcastLista)
+        //    {
+        //        if (podd != null)
+        //        {
+        //            ListViewItem lista = new ListViewItem(podd.Namn);
+        //            lista.SubItems.Add(podd.UppdateringsFrekvens);
+        //            lista.SubItems.Add(podd.Kategori);
 
-        private void fyllFeed()
-        {
-            lvPodcast.Clear();
-            var podcastLista = podcastController.getAll();
-            //podcastLista.ToList();
-            foreach(var pod in podcastLista)
-            {
-                if (pod != null)
-                {
-                    ListViewItem lista = new ListViewItem(pod.Namn);
-                    lista.SubItems.Add(pod.Url);
-                   // lista.SubItems.Add(pod.UppdateringsFrekvens.ToString());
-                        //Add(lista);
-                    lvPodcast.Items.Add(lista);
-                }
-                
+        //            lvPodcast.Items.Add(lista);
+        //            lvPodcast.FullRowSelect = true;
+        //        }
+
+                /* private void fyllFeed()
+                 {
+                     lvPodcast.Clear();
+                     var podcastLista = podcastController.getAll();
+
+                     foreach(var podd in podcastLista)
+                     {
+                         if (podd != null)
+                         {
+                             ListViewItem lista = new ListViewItem(podd.Namn);
+                             lista.SubItems.Add(podd.UppdateringsFrekvens);
+                             lista.SubItems.Add(podd.Kategori);
+
+                             lvPodcast.Items.Add(lista);
+                             lvPodcast.FullRowSelect = true;
+
+                         }
+
+                     */
             }
-
         }
         private void fyllCb()
             {

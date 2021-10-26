@@ -37,7 +37,7 @@ namespace DataAccessLayer
             {
                 List<Podcast> listReturned;
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
-                using (FileStream fileStreamIn = new FileStream("Podcast.xml", FileMode.Open, FileAccess.Read))
+                using (FileStream fileStreamIn = new FileStream("Podcasts.xml", FileMode.Open, FileAccess.Read))
                 {
                     listReturned = (List<Podcast>)xmlSerializer.Deserialize(fileStreamIn);
                     
@@ -48,7 +48,7 @@ namespace DataAccessLayer
             }
             catch (Exception)
             {
-                throw new SerializerException("Podcast.xml", "Could not deserialize file");
+                throw new SerializerException("Podcasts.xml", "Could not deserialize file");
             }
         }
 
@@ -89,7 +89,7 @@ namespace DataAccessLayer
                 throw new SerializerException("Podcasts.xml", "Could not deserialize file");
             }
 
-            public List<Avsnitt> RssFeeder(string urlInput)
+           // public List<Avsnitt> RssFeeder(string urlInput)
             {
 
             }
