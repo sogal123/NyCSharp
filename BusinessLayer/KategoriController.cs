@@ -31,7 +31,7 @@ namespace BusinessLayer
             kategoriRepository.Update(index, kategori);
         }
     
-    public void
+    
         
     }
 }

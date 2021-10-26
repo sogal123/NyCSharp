@@ -30,7 +30,7 @@ namespace Window
 
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
-            int frekvens = Convert.ToInt32(cbFrekvens);
+            int frekvens = Convert.ToInt32(cbFrekvens.SelectedItem);
 
             podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, frekvens);
 
