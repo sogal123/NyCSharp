@@ -6,10 +6,6 @@ namespace Model
 {
     public class Kategori
     {
-        //public override string TypAvEntitet()
-        //{
-        //    return "Objektet är en kategori";
-        //}
 
         public string KategoriNamn { get; set; }
 
