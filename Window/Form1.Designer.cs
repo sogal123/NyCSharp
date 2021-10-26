@@ -156,7 +156,7 @@ namespace Window
             this.cbFrekvens.Name = "cbFrekvens";
             this.cbFrekvens.Size = new System.Drawing.Size(212, 28);
             this.cbFrekvens.TabIndex = 7;
-            this.cbFrekvens.SelectedIndexChanged += new System.EventHandler(this.cbFrekvens_SelectedIndexChanged);
+            
             // 
             // cbKategori
             // 

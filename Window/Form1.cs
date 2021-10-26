@@ -20,19 +20,15 @@ namespace Window
             InitializeComponent();
             podcastController = new PodcastController();
             fyllFeed();
-            fyllCbFrekvens();
+            fyllCb();
         }
 
-        private void cbFrekvens_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
-            int frekvens = Convert.ToInt32(cbFrekvens.SelectedItem);
-
-            podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, frekvens);
+            
+            
+            podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text);
 
 
             //cbFrekvens.Text,string namn, int uppdateringsFrekvens, string url, string kategori, List< Avsnitt > avsnitt
@@ -59,7 +55,7 @@ namespace Window
                 {
                     ListViewItem lista = new ListViewItem(pod.Namn);
                     lista.SubItems.Add(pod.Url);
-                    lista.SubItems.Add(pod.UppdateringsFrekvens.ToString());
+                   // lista.SubItems.Add(pod.UppdateringsFrekvens.ToString());
                         //Add(lista);
                     lvPodcast.Items.Add(lista);
                 }
@@ -67,14 +63,18 @@ namespace Window
             }
 
         }
-        private void fyllCbFrekvens()
+        private void fyllCb()
             {
 
-            cbFrekvens.Items.Add("60s");
-            cbFrekvens.Items.Add("120s");
-            cbFrekvens.Items.Add("180s");
-            cbFrekvens.SelectedIndex = -1;
-            
+            cbFrekvens.Items.Add(" ");
+            cbFrekvens.Items.Add("1min");
+            cbFrekvens.Items.Add("2min");
+            cbFrekvens.Items.Add("3min");
+            cbFrekvens.SelectedIndex = 0;
+
+            cbKategori.Items.Add("Humor");
+            cbKategori.Items.Add("Historia");
+            cbKategori.SelectedIndex = -1;
         }
 
 

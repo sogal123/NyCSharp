@@ -12,11 +12,11 @@ namespace Model
 
         public string Namn { get; set; }
         public string Url { get; set; }
-        public int UppdateringsFrekvens { get; set; }
+        public string UppdateringsFrekvens { get; set; }
         public string Kategori { get; set; }
         public List<Avsnitt> AvsnittLista { get; set; }
 
-        public Podcast(string namn,  string url, int uppdateringsFrekvens) /* string kategori, List<Avsnitt> avsnitt*/
+        public Podcast(string namn,  string url, string uppdateringsFrekvens) /* string kategori, List<Avsnitt> avsnitt*/
         {
             Namn = namn;
             UppdateringsFrekvens = uppdateringsFrekvens;
