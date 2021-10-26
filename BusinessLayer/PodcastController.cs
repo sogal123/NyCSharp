@@ -22,8 +22,7 @@ namespace BusinessLayer
             }
         public void CreatePodcast(string namn, string url)
         {/*, int uppdateringsFrekvens,, string kategori, List<Avsnitt> avsnitt*/
-            Podcast podcast = null;
-            podcast = new Podcast(namn, url); /*, uppdateringsFrekvens kategori, avsnitt*/
+            Podcast podcast = new Podcast(namn, url); /*, uppdateringsFrekvens kategori, avsnitt*/
             podcastRepository.Create(podcast);
         }
         

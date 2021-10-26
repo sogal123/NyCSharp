@@ -6,7 +6,6 @@ using System.Xml.Serialization;
 using System.IO;
 using Model;
 using DataAccessLayer.ExceptionClass;
-
 namespace DataAccessLayer
 {
     internal class DataManager
@@ -33,23 +32,23 @@ namespace DataAccessLayer
 
         public List<Podcast> DeserializePodcast()
         {
-            List<Podcast> lista;
+           
             try
             {
-                
+                List<Podcast> listReturned;
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
-                using (FileStream fileStreamIn = new FileStream("Podcasts.xml", FileMode.Open, FileAccess.Read))
+                using (FileStream fileStreamIn = new FileStream("Podcast.xml", FileMode.Open, FileAccess.Read))
                 {
-                    lista = (List<Podcast>)xmlSerializer.Deserialize(fileStreamIn);
+                    listReturned = (List<Podcast>)xmlSerializer.Deserialize(fileStreamIn);
                     
                 }
-                return lista;
+                return listReturned;
 
 
             }
             catch (Exception)
             {
-                throw SerializerException("Podcasts.xml", "Could not deserialize file");
+                throw new SerializerException("Podcast.xml", "Could not deserialize file");
             }
         }
 

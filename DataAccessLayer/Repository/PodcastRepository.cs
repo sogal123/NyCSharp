@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Model;
 using DataAccessLayer;
-
+using DataAccessLayer.ExceptionClass;
 
 namespace DataAccessLayer.Repository
 {
@@ -35,7 +35,16 @@ namespace DataAccessLayer.Repository
 
         public List<Podcast> GetAll()
         {
-            return dataManager.DeserializePodcast();
+            List<Podcast> podcastLista = new List<Podcast>();
+            try
+            {
+                podcastLista = dataManager.DeserializePodcast();
+            }
+            catch (SerializerException error)
+            {
+                Console.WriteLine(error.Message + ". Ingen lista att returnera");
+            }
+            return podcastLista; 
         }
 
         public void Update(int index, Podcast podcast)
