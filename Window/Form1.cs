@@ -30,7 +30,10 @@ namespace Window
 
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
-            podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text);
+            int frekvens = Convert.ToInt32(cbFrekvens);
+
+            podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, frekvens);
+
 
             //cbFrekvens.Text,string namn, int uppdateringsFrekvens, string url, string kategori, List< Avsnitt > avsnitt
 
@@ -50,11 +53,17 @@ namespace Window
             lvPodcast.Clear();
             var podcastLista = podcastController.getAll();
             //podcastLista.ToList();
-            foreach(var item in podcastLista)
+            foreach(var pod in podcastLista)
             {
-                ListViewItem lista = new ListViewItem(item.Namn);
-                //lista.SubItems.Add()
-                lvPodcast.Items.Add(lista);
+                if (pod != null)
+                {
+                    ListViewItem lista = new ListViewItem(pod.Namn);
+                    lista.SubItems.Add(pod.Url);
+                    lista.SubItems.Add(pod.UppdateringsFrekvens.ToString());
+                        //Add(lista);
+                    lvPodcast.Items.Add(lista);
+                }
+                
             }
 
         }
