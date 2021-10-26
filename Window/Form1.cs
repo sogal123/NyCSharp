@@ -14,10 +14,13 @@ namespace Window
     public partial class Form1 : Form
     {
         PodcastController podcastController;
+
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
+            fyllFeed();
+            fyllCbFrekvens();
         }
 
         private void cbFrekvens_SelectedIndexChanged(object sender, EventArgs e)
@@ -41,5 +44,33 @@ namespace Window
         {
 
         }
+
+        private void fyllFeed()
+        {
+            lvPodcast.Clear();
+            var podcastLista = podcastController.getAll();
+            //podcastLista.ToList();
+            foreach(var item in podcastLista)
+            {
+                ListViewItem lista = new ListViewItem(item.Namn);
+                //lista.SubItems.Add()
+                lvPodcast.Items.Add(lista);
+            }
+
+        }
+        private void fyllCbFrekvens()
+            {
+
+            cbFrekvens.Items.Add("60s");
+            cbFrekvens.Items.Add("120s");
+            cbFrekvens.Items.Add("180s");
+            cbFrekvens.SelectedIndex = -1;
+            
+        }
+
+
+            
+
+        
     }
 }
