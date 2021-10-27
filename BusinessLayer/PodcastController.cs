@@ -44,17 +44,29 @@ namespace BusinessLayer
             return poddnamn;
         }
 
-        //public string GetPodcastUrlAtIndex(int i)
-        //{
-        //    var podcastLista = podcastRepository.GetAll();
-        //    Podcast podd = podcastLista[i];
-        //    string URL = Convert.ToString(i);
-        //    string url = 
-            
-          
+        public string GetPodcastUrlAtIndex(int i)
+        {
+            var podcastLista = podcastRepository.GetAll();
+            Podcast valdPodcast = podcastLista[i];
+            string valdPodcastUrl = valdPodcast.Url;
+            return valdPodcastUrl;
 
-        //}
+        }
+
+        public  void UpdatePodcast(int valdPodcast, string namn, string url, string uppdateringsFrekvens, string kategori)
+        {
+            var podcastLista = podcastRepository.GetAll();
+
+            Podcast podd = podcastLista[valdPodcast];
+            namn = podd.Namn;
+            url = podd.Url;
+            uppdateringsFrekvens = podd.UppdateringsFrekvens;
+            kategori = podd.Kategori;
+
+           
+            podcastRepository.Update(valdPodcast, podd);
+        }
+        }
+
     }
-
-}
 
