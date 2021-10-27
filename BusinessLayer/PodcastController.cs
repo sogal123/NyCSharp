@@ -12,6 +12,7 @@ namespace BusinessLayer
        
             IRepository<Podcast> podcastRepository;
             List<Podcast> podcastList;
+            AvsnittRepository avsnittRepository;
 
             public PodcastController()
             {

@@ -13,7 +13,6 @@ namespace BusinessLayer
             avsnittRepository = new AvsnittRepository();
         }
 
-        public List<Avsnitt> 
 
     }
 }

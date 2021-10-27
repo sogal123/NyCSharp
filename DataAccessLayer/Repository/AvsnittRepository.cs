@@ -18,8 +18,13 @@ namespace DataAccessLayer.Repository
             {
                 podcastLista = dataManager.DeserializePodcast();
                 Podcast podd = podcastLista[i];
-                avsnittLista = podd.Avsnitt; 
+                avsnittLista = podd.AvsnittLista; 
             }
+            catch (Exception)
+            {
+                throw;
+            }
+            return avsnittLista;
         }
     }
 }
