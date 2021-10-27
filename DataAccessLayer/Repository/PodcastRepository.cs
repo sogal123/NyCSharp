@@ -24,11 +24,11 @@ namespace DataAccessLayer.Repository
             SaveChanges();
         }
 
-        public void Delete(int index)
+        public void Delete(int i)
         {
-            if (index >= 0)
+            if (i >= 0)
             {
-                podcastLista.RemoveAt(index);
+                podcastLista.RemoveAt(i);
                 SaveChanges();
             }
         }
@@ -47,11 +47,11 @@ namespace DataAccessLayer.Repository
             return podcastLista; 
         }
 
-        public void Update(int index, Podcast podcast)
+        public void Update(int i, Podcast podcast)
         {
-            if (index >= 0)
+            if (i >= 0)
             {
-                podcastLista[index] = podcast;
+                podcastLista[i] = podcast;
             }
             SaveChanges();
         }
