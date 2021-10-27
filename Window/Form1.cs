@@ -16,12 +16,12 @@ namespace Window
     public partial class Form1 : Form
     {
         PodcastController podcastController;
-        DataManager datamanager;
+        
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
-            datamanager = new DataManager();
+            
            // fyllFeed();
             fyllCb();
         }
@@ -31,9 +31,9 @@ namespace Window
         {
             
             
-            podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
-            string url = tbUrl.Text;
-            datamanager.RssFeeder(url);
+            //podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
+            //string url = tbUrl.Text;
+            //datamanager.RssFeeder(url);
 
 
             //cbFrekvens.Text,string namn, int uppdateringsFrekvens, string url, string kategori, List< Avsnitt > avsnitt
