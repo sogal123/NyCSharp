@@ -95,15 +95,15 @@ namespace DataAccessLayer
         public List<string> RssFeeder(string url)
         {
 
-            List<string> data = new List<string>
+            List<string> data = new List<string>;
             XmlReader reader = XmlReader.Create(url);
             SyndicationFeed feed = SyndicationFeed.Load(reader);
             reader.Close();
 
             foreach (SyndicationItem item in feed.Items)
             {
-                Console.WriteLine(feed.Title.Text);
-                Console.WriteLine(feed.Items.desc);
+                Console.WriteLine(item.Title.Text);
+                Console.WriteLine(item.Description.Text);
             }
             return data;
         }
