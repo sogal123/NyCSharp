@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 using System.IO;
 using Model;
 using DataAccessLayer.ExceptionClass;
+using System.ServiceModel.Syndication;
 
 namespace DataAccessLayer
 {
@@ -33,7 +34,7 @@ namespace DataAccessLayer
 
         public List<Podcast> DeserializePodcast()
         {
-           
+
             try
             {
                 List<Podcast> listReturned;
@@ -41,7 +42,7 @@ namespace DataAccessLayer
                 using (FileStream fileStreamIn = new FileStream("Podcasts.xml", FileMode.Open, FileAccess.Read))
                 {
                     listReturned = (List<Podcast>)xmlSerializer.Deserialize(fileStreamIn);
-                    
+
                 }
                 return listReturned;
 
@@ -89,20 +90,22 @@ namespace DataAccessLayer
             {
                 throw new SerializerException("Podcasts.xml", "Could not deserialize file");
             }
+        }
 
-           // public List<Avsnitt> RssFeeder(string urlInput)
+        public List<string> RssFeeder(string url)
+        {
+
+            List<string> data = new List<string>
+            XmlReader reader = XmlReader.Create(url);
+            SyndicationFeed feed = SyndicationFeed.Load(reader);
+            reader.Close();
+
+            foreach (SyndicationItem item in feed.Items)
             {
-
+                Console.WriteLine(feed.Title.Text);
+                Console.WriteLine(feed.Items.desc);
             }
-            //    Reader reader = XmlReader.Create(url);
-            //SyndicationFeed feed = SyndicationFeed.Load(reader);
-            //reader.Close();
-
-            //foreach (SyndicationItem item in feed.Items)
-            //{
-            //    Console.WriteLine(feed.Title.Text);
-            //    Console.WriteLine(feed.Items.desc);
-            //}
+            return data;
         }
     }
 }
