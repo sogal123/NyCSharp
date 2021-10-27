@@ -31,9 +31,9 @@ namespace BusinessLayer
             podcastRepository.Create(podcast);
         }
         
-        public void DeletePodcast(int index)
+        public void DeletePodcast(int i)
         {
-            podcastRepository.Delete(index);
+            podcastRepository.Delete(i);
         }
 
         public string GetPodcastAtIndex(int i)
@@ -43,6 +43,17 @@ namespace BusinessLayer
             string poddnamn = podd.Namn;
             return poddnamn;
         }
+
+        //public string GetPodcastUrlAtIndex(int i)
+        //{
+        //    var podcastLista = podcastRepository.GetAll();
+        //    Podcast podd = podcastLista[i];
+        //    string URL = Convert.ToString(i);
+        //    string url = 
+            
+          
+
+        //}
     }
 
 }
