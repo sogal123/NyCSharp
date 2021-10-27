@@ -94,10 +94,10 @@ namespace DataAccessLayer
 
         public List<string> RssFeeder(string url)
         {
-            XmlDocument doc = new XmlDocument();
-            //try
-            //{
-                
+            List<string> data = new List<string>();
+            try
+            {
+                XmlDocument doc = new XmlDocument();
                 doc.Load(url);
 
                 XmlElement root = doc.DocumentElement;
@@ -107,30 +107,27 @@ namespace DataAccessLayer
                 {
                     string titel = node["title"].InnerText;
                     string beskrivning = node["description"].InnerText;
-                    doc.
+                    
                 }
 
-                var xmlDoc = nodes.Cast<XmlNode>()
-
-            return doc;
-
-            //XmlReader reader = XmlReader.Create(url);
-            //SyndicationFeed feed = SyndicationFeed.Load(reader);
 
 
-            //foreach (SyndicationItem item in feed.Items)
-            //{
-            //    data.Add(item.Title.Text);
-            //    data.Add(item.Summary.Text);
-            //}
+                XmlReader reader = XmlReader.Create(url);
+                SyndicationFeed feed = SyndicationFeed.Load(reader);
 
 
-            //catch (FileNotFoundException)
-            //{
-            //    Console.WriteLine("Hittar inte filen");
-            //}
-
-            //return data;
+                foreach (SyndicationItem item in feed.Items)
+                {
+                    data.Add(item.Title.Text);
+                    data.Add(item.Summary.Text);
+                }
+               
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Hittar inte filen");
+            }
+            return data;
         }
     }
 }
