@@ -94,16 +94,24 @@ namespace DataAccessLayer
 
         public List<string> RssFeeder(string url)
         {
-
             List<string> data = new List<string>();
-            XmlReader reader = XmlReader.Create(url);
-            SyndicationFeed feed = SyndicationFeed.Load(reader);
-
-            data.Add(feed.Description.Text);
-            foreach (SyndicationItem item in feed.Items)                
+            try
             {
-                Console.WriteLine(item.);
-                Console.WriteLine(item.descri);
+                
+                XmlReader reader = XmlReader.Create(url);
+                SyndicationFeed feed = SyndicationFeed.Load(reader);
+
+
+                foreach (SyndicationItem item in feed.Items)
+                {
+                    data.Add(item.Title.Text);
+                    data.Add(item.Summary.Text);
+                }
+               
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Hittar inte filen");
             }
             return data;
         }
