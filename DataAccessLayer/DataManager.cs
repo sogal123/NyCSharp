@@ -111,8 +111,6 @@ namespace DataAccessLayer
                 //    data.Add(beskrivning);
                 //}
 
-
-
                 XmlReader reader = XmlReader.Create(url);
                 SyndicationFeed feed = SyndicationFeed.Load(reader);
 
