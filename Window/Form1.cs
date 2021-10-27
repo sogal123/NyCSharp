@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,11 +31,16 @@ namespace Window
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
 
-                        
-            podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
-            string url = tbUrl.Text;
-            datamanager.Feedläsare(url);
-
+            try
+            {
+                podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
+                string url = tbUrl.Text;
+                datamanager.Feedläsare(url);
+            }
+            catch (FileNotFoundException error)
+            {
+                Console.WriteLine(error.Message + "Hittar inte filen");
+            }
 
             //cbFrekvens.Text,string namn, int uppdateringsFrekvens, string url, string kategori, List< Avsnitt > avsnitt
 

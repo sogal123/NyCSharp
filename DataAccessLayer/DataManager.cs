@@ -114,7 +114,8 @@ namespace DataAccessLayer
                 XmlReader reader = XmlReader.Create(url);
                 SyndicationFeed feed = SyndicationFeed.Load(reader);
 
-
+                data.Add(feed.Title.Text);
+                data.Add(feed.Description.Text);
                 foreach (SyndicationItem item in feed.Items)
                 {
                     data.Add(item.Title.Text);
