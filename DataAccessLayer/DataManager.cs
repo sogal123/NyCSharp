@@ -10,7 +10,7 @@ using System.ServiceModel.Syndication;
 
 namespace DataAccessLayer
 {
-    internal class DataManager
+    public class DataManager
     {
 
         public void SerializePodcast(List<Podcast> items)
@@ -92,23 +92,24 @@ namespace DataAccessLayer
             }
         }
 
-        public List<string> RssFeeder(string url)
+        public List<string> Feedläsare(string url)
         {
             List<string> data = new List<string>();
             try
             {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(url);
+                //XmlDocument doc = new XmlDocument();
+                //doc.Load(url);
 
-                XmlElement root = doc.DocumentElement;
-                XmlNodeList nodes = root.SelectNodes("//channel/item");
+                //XmlElement root = doc.DocumentElement;
+                //XmlNodeList nodes = root.SelectNodes("//channel/item");
 
-                foreach (XmlNode node in nodes)
-                {
-                    string titel = node["title"].InnerText;
-                    string beskrivning = node["description"].InnerText;
-                    
-                }
+                //foreach (XmlNode node in nodes)
+                //{
+                //    string titel = node["title"].InnerText;
+                //    string beskrivning = node["description"].InnerText;
+                //    data.Add(titel);
+                //    data.Add(beskrivning);
+                //}
 
 
 
@@ -121,13 +122,13 @@ namespace DataAccessLayer
                     data.Add(item.Title.Text);
                     data.Add(item.Summary.Text);
                 }
-               
+
             }
             catch (FileNotFoundException)
             {
                 Console.WriteLine("Hittar inte filen");
             }
-            return data;
+           return data;
         }
     }
 }
