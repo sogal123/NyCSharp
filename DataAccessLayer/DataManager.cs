@@ -92,7 +92,7 @@ namespace DataAccessLayer
             }
         }
 
-        public List<string> Feedläsare(string url)
+        public List<string> Feedläsare()
         {
             List<string> data = new List<string>();
             try
@@ -111,7 +111,7 @@ namespace DataAccessLayer
                 //    data.Add(beskrivning);
                 //}
 
-                XmlReader reader = XmlReader.Create(url);
+                XmlReader reader = XmlReader.Create("http://svt.se/nyheter/regionalt/blekingenytt/rss.xml.");
                 SyndicationFeed feed = SyndicationFeed.Load(reader);
 
                 data.Add(feed.Title.Text);

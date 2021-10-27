@@ -8,10 +8,11 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Xml;
 
 namespace Window
 {
@@ -28,15 +29,17 @@ namespace Window
             fyllCb();
         }
 
-        
+
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
 
+
+            /*
             try
             {
                 podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
-                string url = tbUrl.Text;
-                datamanager.Feedläsare(url);
+                //string url = tbUrl.Text;
+                datamanager.Feedläsare();
             }
             catch (FileNotFoundException error)
             {
@@ -44,9 +47,10 @@ namespace Window
             }
 
             //cbFrekvens.Text,string namn, int uppdateringsFrekvens, string url, string kategori, List< Avsnitt > avsnitt
+            }
+             */
 
         }
-
 
 
 
