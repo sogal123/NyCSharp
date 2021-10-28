@@ -20,11 +20,15 @@ namespace Window
     {
         PodcastController podcastController;
         DataManager datamanager;
+        //List<Podcast> podcastLista;
+        AvsnittController avsnittController;
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
             datamanager = new DataManager();
+            avsnittController = new AvsnittController();
+            
            fyllFeed();
             fyllCb();
         }
@@ -37,6 +41,15 @@ namespace Window
 
             try
             {
+                //    int i = 0;
+                //    foreach (Podcast poddar in podcastLista)
+                //    {
+                //        podcastLista.Count();
+                //        i++;
+                //    }
+                //    //var nyttIndex = List<Podcast>.
+
+                List<Avsnitt> avsnitt = avsnittController.HämtaAllaAvsnitt(tbUrl.Text);
                 podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
                 
                 datamanager.FeedLäsare(tbUrl.Text);

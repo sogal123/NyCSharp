@@ -10,7 +10,7 @@ namespace BusinessLayer
     public class PodcastController 
     {
        
-            IRepository<Podcast> podcastRepository;
+            PodcastRepository podcastRepository;
             List<Podcast> podcastList;
             AvsnittRepository avsnittRepository;
 
@@ -18,8 +18,8 @@ namespace BusinessLayer
             {
                 podcastRepository = new PodcastRepository();
                 podcastList = podcastRepository.GetAll();
-
-
+                avsnittRepository = new AvsnittRepository();
+                  
             }
 
         public List <Podcast> getAll()
@@ -27,8 +27,10 @@ namespace BusinessLayer
             return podcastRepository.GetAll();
         }
         public void CreatePodcast(string namn, string url, string uppdateringsFrekvens, string kategori)
-        {/*, string kategori, List<Avsnitt> avsnitt*/
-            Podcast podcast = new Podcast(namn, url, uppdateringsFrekvens, kategori); /*,  , avsnitt*/
+        {
+            List<Avsnitt> avsnittLista = avsnittRepository.HämtaAllaAvsnitt(url);
+
+            Podcast podcast = new Podcast(namn, url, uppdateringsFrekvens, kategori, avsnittLista);
             podcastRepository.Create(podcast);
         }
         
