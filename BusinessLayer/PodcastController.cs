@@ -13,6 +13,7 @@ namespace BusinessLayer
 {
     public class PodcastController
     {
+<<<<<<< Updated upstream
         private IRepository<Podcast> podcastRepository;
         private List<Podcast> podcastList;
 
@@ -22,6 +23,21 @@ namespace BusinessLayer
             podcastList = podcastRepository.GetAll();
         }
 
+=======
+
+        PodcastRepository podcastRepository;
+        List<Podcast> podcastList;
+        AvsnittRepository avsnittRepository;
+
+        public PodcastController()
+        {
+            podcastRepository = new PodcastRepository();
+            podcastList = podcastRepository.GetAll();
+            avsnittRepository = new AvsnittRepository();
+
+        }
+
+>>>>>>> Stashed changes
         public List<Podcast> getAll()
         {
             return podcastRepository.GetAll();
@@ -77,6 +93,7 @@ namespace BusinessLayer
             return episodes;
         }
 
+<<<<<<< Updated upstream
         //public string GetPodcastUrlAtIndex(int i)
         //{
         //    var podcastLista = podcastRepository.GetAll();
@@ -86,4 +103,21 @@ namespace BusinessLayer
 
         //}
     }
+=======
+        public void UpdatePodcast(int valdPodcast, string namn, string url, string uppdateringsFrekvens, string kategori)
+        {
+            var podcastLista = podcastRepository.GetAll();
+
+            Podcast podd = podcastLista[valdPodcast];
+            namn = podd.Namn;
+            url = podd.Url;
+            uppdateringsFrekvens = podd.UppdateringsFrekvens;
+            kategori = podd.Kategori;
+
+
+            podcastRepository.Update(valdPodcast, podd);
+        }
+    }
+
+>>>>>>> Stashed changes
 }
