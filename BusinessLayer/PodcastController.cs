@@ -22,7 +22,7 @@ namespace BusinessLayer
 
         }
 
-        public List<Podcast> getAll()
+        public List<Podcast> getAll() 
         {
             return podcastRepository.GetAll();
         }
