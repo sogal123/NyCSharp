@@ -24,17 +24,17 @@ namespace DataAccessLayer.Repository
         {
             {
                 XmlReader reader = XmlReader.Create(url);
-                SyndicationFeed feed = SyndicationFeed.Load(reader);
+                SyndicationFeed data = SyndicationFeed.Load(reader);
 
-                List<Avsnitt> allaAvsnitt = new List<Avsnitt>();
-                foreach (var item in feed.Items)
+                List<Avsnitt> listaAvsnitt = new List<Avsnitt>();
+                foreach (var item in data.Items)
                 {
                     Avsnitt avsnitt = new Avsnitt();
                     avsnitt.Namn = item.Title.Text;
                     avsnitt.AvsnittsBeskrivning = item.Summary.Text;
-                    allaAvsnitt.Add(avsnitt);
+                    listaAvsnitt.Add(avsnitt);
                 }
-                return allaAvsnitt;
+                return listaAvsnitt;
             }
             //try
             //{

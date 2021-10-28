@@ -1,5 +1,4 @@
 ﻿using BusinessLayer;
-using DataAccessLayer;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -19,14 +18,12 @@ namespace Window
     public partial class Form1 : Form
     {
         PodcastController podcastController;
-        DataManager datamanager;
         //List<Podcast> podcastLista;
         AvsnittController avsnittController;
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
-            datamanager = new DataManager();
             avsnittController = new AvsnittController();
             
            fyllFeed();
@@ -39,26 +36,16 @@ namespace Window
 
 
 
-            try
-            {
-                //    int i = 0;
-                //    foreach (Podcast poddar in podcastLista)
-                //    {
-                //        podcastLista.Count();
-                //        i++;
-                //    }
-                //    //var nyttIndex = List<Podcast>.
-
-                List<Avsnitt> avsnitt = avsnittController.HämtaAllaAvsnitt(tbUrl.Text);
+          
                 podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
                 
-                datamanager.FeedLäsare(tbUrl.Text);
+                //datamanager.FeedLäsare(tbUrl.Text);
                 podcastController.getAll();
-            }
-            catch (FileNotFoundException error)
-            {
-                Console.WriteLine(error.Message + "Hittar inte filen");
-            }
+            //}
+            //catch (FileNotFoundException error)
+            //{
+            //    Console.WriteLine(error.Message + "Hittar inte filen");
+            //}
 
             //cbFrekvens.Text,string namn, int uppdateringsFrekvens, string url, string kategori, List< Avsnitt > avsnitt
         }
@@ -118,14 +105,15 @@ namespace Window
             cbFrekvens.Items.Add("3min");
             cbFrekvens.SelectedIndex = 0;
 
+            cbKategori.Items.Add(" ");
             cbKategori.Items.Add("Humor");
             cbKategori.Items.Add("Historia");
             cbKategori.SelectedIndex = -1;
         }
 
+        private void lvPodcast_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-            
-
-        
+        }
     }
 }

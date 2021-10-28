@@ -110,9 +110,9 @@ namespace DataAccessLayer
             //    data.Add(beskrivning);
             //}
 
-            XmlReaderSettings settings = new XmlReaderSettings();
-            settings.IgnoreWhitespace = true;
-            settings.IgnoreComments = true;
+            //XmlReaderSettings settings = new XmlReaderSettings();
+            //settings.IgnoreWhitespace = true;
+            //settings.IgnoreComments = true;
                 List<SyndicationItem> data = new List<SyndicationItem>();
                 XmlReader reader = XmlReader.Create(url);
                 SyndicationFeed feed = SyndicationFeed.Load(reader);

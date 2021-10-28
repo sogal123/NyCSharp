@@ -74,6 +74,7 @@ namespace Window
             this.lvPodcast.TabIndex = 0;
             this.lvPodcast.UseCompatibleStateImageBehavior = false;
             this.lvPodcast.View = System.Windows.Forms.View.Details;
+            this.lvPodcast.SelectedIndexChanged += new System.EventHandler(this.lvPodcast_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -156,7 +157,6 @@ namespace Window
             this.cbFrekvens.Name = "cbFrekvens";
             this.cbFrekvens.Size = new System.Drawing.Size(212, 28);
             this.cbFrekvens.TabIndex = 7;
-            
             // 
             // cbKategori
             // 
@@ -187,7 +187,6 @@ namespace Window
             this.btnSparaPodcast.TabIndex = 10;
             this.btnSparaPodcast.Text = "Spara";
             this.btnSparaPodcast.UseVisualStyleBackColor = true;
-            
             // 
             // btnTaBortPodcast
             // 
@@ -272,7 +271,6 @@ namespace Window
             this.lblKategori.Size = new System.Drawing.Size(58, 13);
             this.lblKategori.TabIndex = 19;
             this.lblKategori.Text = "Kategori:";
-            
             // 
             // lblNyKategori
             // 
@@ -306,7 +304,6 @@ namespace Window
             this.lblPodcasts.Size = new System.Drawing.Size(53, 13);
             this.lblPodcasts.TabIndex = 22;
             this.lblPodcasts.Text = "Podcast";
-            
             // 
             // lblBeskrivning
             // 
