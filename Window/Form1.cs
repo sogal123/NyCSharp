@@ -1,5 +1,5 @@
 ﻿using BusinessLayer;
-using DataAccessLayer;
+using DataAccessLayer.Repository;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -18,17 +18,49 @@ namespace Window
 {
     public partial class Form1 : Form
     {
-        private PodcastController podcastController;
-        private DataManager datamanager;
-
+        PodcastController podcastController;
+        //List<Podcast> podcastLista;
+        AvsnittController avsnittController;
+        PodcastRepository podcastRepository;
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
-            datamanager = new DataManager();
+            avsnittController = new AvsnittController();
+            podcastRepository = new PodcastRepository();
             fyllFeed();
             fyllCb();
         }
+
+
+        private void btnNyPodcast_Click(object sender, EventArgs e)
+        {
+
+
+
+
+            podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
+
+
+            podcastController.getAll();
+            fyllFeed();
+
+
+            //datamanager.FeedLäsare(tbUrl.Text);
+            //}
+            //catch (FileNotFoundException error)
+            //{
+            //    Console.WriteLine(error.Message + "Hittar inte filen");
+            //}
+
+            //cbFrekvens.Text,string namn, int uppdateringsFrekvens, string url, string kategori, List< Avsnitt > avsnitt
+        }
+
+
+
+
+
+
 
         //private void btnSparaPodcast_Click(object sender, EventArgs e)
         //{
@@ -47,16 +79,21 @@ namespace Window
         //            lvPodcast.FullRowSelect = true;
         //        }
 
+
         private void fyllFeed()
         {
-            lvPodcast.Clear();
-            var podcastLista = podcastController.getAll();
+            //lvPodcast.Clear();
+            var poddLista = podcastController.getAll();
 
-            foreach (var podd in podcastLista)
+
+            lvPodcast.Items.Clear();
+            foreach (var podd in poddLista)
             {
+
+
                 if (podd != null)
                 {
-                    string antalAvsnitt = podd.AvsnittLista.Count.ToString();
+                    string antalAvsnitt = podd.Avsnitt.Count.ToString();
 
                     ListViewItem lista = new ListViewItem(antalAvsnitt);
                     lista.SubItems.Add(podd.Namn);
@@ -64,13 +101,23 @@ namespace Window
                     lista.SubItems.Add(podd.Kategori);
                     lvPodcast.Items.Add(lista);
 
+
                     lvPodcast.FullRowSelect = true;
+                    lvPodcast.View = View.Details;
+                    lvPodcast.GridLines = true;
+                    lvPodcast.Sorting = SortOrder.Descending;
+
+
+
                 }
             }
         }
 
+
+
         private void fyllCb()
         {
+
             cbFrekvens.Items.Add(" ");
             cbFrekvens.Items.Add("1min");
             cbFrekvens.Items.Add("2min");
@@ -83,14 +130,14 @@ namespace Window
             cbKategori.SelectedIndex = -1;
         }
 
-        private async void btnNyPodcast_MouseClick(object sender, MouseEventArgs e)
+        private void lvPodcast_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var namn = tbNamn.Text;
-            var url = tbUrl.Text;
-            var uppdateringsFrekvens = cbFrekvens.SelectedItem.ToString();
-            var kategori = cbKategori.SelectedItem.ToString();
+            lvPodcast.View = View.Details;
+            lvPodcast.GridLines = true;
+            lvPodcast.FullRowSelect = true;
+            lvPodcast.Sorting = SortOrder.Descending;
 
-            await podcastController.CreatePodcastAsync(namn, url, uppdateringsFrekvens, kategori);
+            //if (lvPodcast.SelectedItems.Count == )
         }
     }
 }

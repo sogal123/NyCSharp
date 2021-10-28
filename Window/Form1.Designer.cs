@@ -163,7 +163,6 @@ namespace Window
             this.btnNyPodcast.TabIndex = 9;
             this.btnNyPodcast.Text = "Ny";
             this.btnNyPodcast.UseVisualStyleBackColor = true;
-            this.btnNyPodcast.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnNyPodcast_MouseClick);
             // 
             // btnSparaPodcast
             // 
