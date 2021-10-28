@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using DataAccessLayer.Repository;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -20,13 +21,14 @@ namespace Window
         PodcastController podcastController;
         //List<Podcast> podcastLista;
         AvsnittController avsnittController;
+        PodcastRepository podcastRepository;
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
             avsnittController = new AvsnittController();
-            
-           fyllFeed();
+            podcastRepository = new PodcastRepository();
+            fyllFeed();
             fyllCb();
         }
 
@@ -39,8 +41,12 @@ namespace Window
           
                 podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
                 
-                //datamanager.FeedLäsare(tbUrl.Text);
+               
                 podcastController.getAll();
+                fyllFeed();
+                
+
+            //datamanager.FeedLäsare(tbUrl.Text);
             //}
             //catch (FileNotFoundException error)
             //{
@@ -51,44 +57,57 @@ namespace Window
         }
 
 
-    
 
 
 
 
-    //private void btnSparaPodcast_Click(object sender, EventArgs e)
-    //{
-    //    lvPodcast.Clear();
-    //    var podcastLista = podcastController.getAll();
 
-    //    foreach (var podd in podcastLista)
-    //    {
-    //        if (podd != null)
-    //        {
-    //            ListViewItem lista = new ListViewItem(podd.Namn);
-    //            lista.SubItems.Add(podd.UppdateringsFrekvens);
-    //            lista.SubItems.Add(podd.Kategori);
+        //private void btnSparaPodcast_Click(object sender, EventArgs e)
+        //{
+        //    lvPodcast.Clear();
+        //    var podcastLista = podcastController.getAll();
 
-    //            lvPodcast.Items.Add(lista);
-    //            lvPodcast.FullRowSelect = true;
-    //        }
+        //    foreach (var podd in podcastLista)
+        //    {
+        //        if (podd != null)
+        //        {
+        //            ListViewItem lista = new ListViewItem(podd.Namn);
+        //            lista.SubItems.Add(podd.UppdateringsFrekvens);
+        //            lista.SubItems.Add(podd.Kategori);
+
+        //            lvPodcast.Items.Add(lista);
+        //            lvPodcast.FullRowSelect = true;
+        //        }
 
 
-    private void fyllFeed()
-        {
-            lvPodcast.Clear();
-            var podcastLista = podcastController.getAll();
-
-            foreach (var podd in podcastLista)
+        private void fyllFeed()
             {
+            //lvPodcast.Clear();
+            var poddLista = podcastController.getAll();
+           
+            
+            lvPodcast.Items.Clear();
+            foreach (var podd in poddLista)
+            {
+
+
                 if (podd != null)
                 {
-                    ListViewItem lista = new ListViewItem(podd.Namn);
+                    string antalAvsnitt = podd.AvsnittLista.Count.ToString();
+
+                    ListViewItem lista = new ListViewItem(antalAvsnitt);
+                    lista.SubItems.Add(podd.Namn);
                     lista.SubItems.Add(podd.UppdateringsFrekvens);
                     lista.SubItems.Add(podd.Kategori);
-
                     lvPodcast.Items.Add(lista);
+
+
                     lvPodcast.FullRowSelect = true;
+                    lvPodcast.View = View.Details;
+                    lvPodcast.GridLines = true;
+                    lvPodcast.Sorting = SortOrder.Descending;
+
+
 
                 }
             }
@@ -113,7 +132,12 @@ namespace Window
 
         private void lvPodcast_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lvPodcast.View = View.Details;
+            lvPodcast.GridLines = true;
+            lvPodcast.FullRowSelect = true;
+            lvPodcast.Sorting = SortOrder.Descending;
 
+            //if (lvPodcast.SelectedItems.Count == )
         }
     }
 }
