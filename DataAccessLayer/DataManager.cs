@@ -92,42 +92,42 @@ namespace DataAccessLayer
             }
         }
 
-        public List<string> Feedläsare()
+        public List<SyndicationItem> FeedLäsare(string url)
         {
-            List<string> data = new List<string>();
-            try
-            {
-                //XmlDocument doc = new XmlDocument();
-                //doc.Load(url);
 
-                //XmlElement root = doc.DocumentElement;
-                //XmlNodeList nodes = root.SelectNodes("//channel/item");
 
-                //foreach (XmlNode node in nodes)
-                //{
-                //    string titel = node["title"].InnerText;
-                //    string beskrivning = node["description"].InnerText;
-                //    data.Add(titel);
-                //    data.Add(beskrivning);
-                //}
+            //XmlDocument doc = new XmlDocument();
+            //doc.Load(url);
 
-                XmlReader reader = XmlReader.Create("http://svt.se/nyheter/regionalt/blekingenytt/rss.xml.");
+            //XmlElement root = doc.DocumentElement;
+            //XmlNodeList nodes = root.SelectNodes("//channel/item");
+
+            //foreach (XmlNode node in nodes)
+            //{
+            //    string titel = node["title"].InnerText;
+            //    string beskrivning = node["description"].InnerText;
+            //    data.Add(titel);
+            //    data.Add(beskrivning);
+            //}
+
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.IgnoreWhitespace = true;
+            settings.IgnoreComments = true;
+                List<SyndicationItem> data = new List<SyndicationItem>();
+                XmlReader reader = XmlReader.Create(url);
                 SyndicationFeed feed = SyndicationFeed.Load(reader);
+                reader.Close();
 
-                data.Add(feed.Title.Text);
-                data.Add(feed.Description.Text);
-                foreach (SyndicationItem item in feed.Items)
-                {
-                    data.Add(item.Title.Text);
-                    data.Add(item.Summary.Text);
-                }
-
-            }
-            catch (FileNotFoundException)
+            //data.Add(feed.Title.Text);
+            //data.Add(feed.Description.Text);
+            foreach (SyndicationItem item in feed.Items)
             {
-                Console.WriteLine("Hittar inte filen");
+                data.Add(item);
+                //data.Add(item.Title.Text);
+                //data.Add(item.Summary.Text);
             }
-           return data;
+
+            return data;
         }
     }
 }
