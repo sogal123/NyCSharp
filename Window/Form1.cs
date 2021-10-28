@@ -1,5 +1,4 @@
 ﻿using BusinessLayer;
-using DataAccessLayer;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -35,19 +34,19 @@ namespace Window
         //    lvPodcast.Clear();
         //    var podcastLista = podcastController.getAll();
 
-        //    foreach (var podd in podcastLista)
-        //    {
-        //        if (podd != null)
-        //        {
-        //            ListViewItem lista = new ListViewItem(podd.Namn);
-        //            lista.SubItems.Add(podd.UppdateringsFrekvens);
-        //            lista.SubItems.Add(podd.Kategori);
+    //    foreach (var podd in podcastLista)
+    //    {
+    //        if (podd != null)
+    //        {
+    //            ListViewItem lista = new ListViewItem(podd.Namn);
+    //            lista.SubItems.Add(podd.UppdateringsFrekvens);
+    //            lista.SubItems.Add(podd.Kategori);
 
-        //            lvPodcast.Items.Add(lista);
-        //            lvPodcast.FullRowSelect = true;
-        //        }
+    //            lvPodcast.Items.Add(lista);
+    //            lvPodcast.FullRowSelect = true;
+    //        }
 
-        private void fyllFeed()
+    private void fyllFeed()
         {
             lvPodcast.Clear();
             var podcastLista = podcastController.getAll();
@@ -74,6 +73,7 @@ namespace Window
             cbFrekvens.Items.Add("3min");
             cbFrekvens.SelectedIndex = 0;
 
+            cbKategori.Items.Add(" ");
             cbKategori.Items.Add("Humor");
             cbKategori.Items.Add("Historia");
             cbKategori.SelectedIndex = -1;
