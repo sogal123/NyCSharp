@@ -100,23 +100,25 @@ namespace DataAccessLayer
             //XmlReaderSettings settings = new XmlReaderSettings();
             //settings.IgnoreWhitespace = true;
             //settings.IgnoreComments = true;
-                List<SyndicationItem> data = new List<SyndicationItem>();
-                XmlReader reader = XmlReader.Create(url);
-                SyndicationFeed feed = SyndicationFeed.Load(reader);
-                reader.Close();
+            List<SyndicationItem> data = new List<SyndicationItem>();
+            XmlReader reader = XmlReader.Create(url);
+            SyndicationFeed feed = SyndicationFeed.Load(reader);
+            reader.Close();
 
-                data.Add(feed.Title.Text);
-                data.Add(feed.Description.Text);
-                foreach (SyndicationItem item in feed.Items)
-                {
-                    data.Add(item.Title.Text);
-                    data.Add(item.Summary.Text);
-                }
+            data.Add(feed.Title.Text);
+            data.Add(feed.Description.Text);
+            foreach (SyndicationItem item in feed.Items)
+            {
+                data.Add(item.Title.Text);
+                data.Add(item.Summary.Text);
             }
+        }
+
             catch (FileNotFoundException)
             {
                 Console.WriteLine("Hittar inte filen");
             }
+
             return data;
         }
     }
