@@ -56,11 +56,14 @@ namespace Window
             {
                 if (podd != null)
                 {
-                    ListViewItem lista = new ListViewItem(podd.Namn);
+                    string antalAvsnitt = podd.AvsnittLista.Count.ToString();
+
+                    ListViewItem lista = new ListViewItem(antalAvsnitt);
+                    lista.SubItems.Add(podd.Namn);
                     lista.SubItems.Add(podd.UppdateringsFrekvens);
                     lista.SubItems.Add(podd.Kategori);
-
                     lvPodcast.Items.Add(lista);
+
                     lvPodcast.FullRowSelect = true;
                 }
             }
