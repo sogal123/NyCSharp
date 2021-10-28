@@ -5,8 +5,4 @@ using DataAccessLayer.Repository;
 
 namespace BusinessLayer
 {
-    public class Test
-    {
-        private 
-    }
 }

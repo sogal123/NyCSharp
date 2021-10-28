@@ -9,8 +9,9 @@ namespace DataAccessLayer.Repository
 {
     public class PodcastRepository : IRepository<Podcast>
     {
-        DataManager dataManager;
-        List<Podcast> podcastLista;
+        private DataManager dataManager;
+        private List<Podcast> podcastLista;
+
         public PodcastRepository()
         {
             dataManager = new DataManager();
@@ -44,7 +45,7 @@ namespace DataAccessLayer.Repository
             {
                 Console.WriteLine(error.Message + ". Ingen lista att returnera");
             }
-            return podcastLista; 
+            return podcastLista;
         }
 
         public void Update(int i, Podcast podcast)
@@ -55,11 +56,10 @@ namespace DataAccessLayer.Repository
             }
             SaveChanges();
         }
+
         public void SaveChanges()
         {
             dataManager.SerializePodcast(podcastLista);
         }
-
-
     }
 }

@@ -12,14 +12,14 @@ namespace DataAccessLayer.Repository
         public List<Podcast> podcastLista;
         public DataManager dataManager;
 
-        public List<Avsnitt> GetAll(int i)
-        {
-            try
-            {
-                podcastLista = dataManager.DeserializePodcast();
-                Podcast podd = podcastLista[i];
-                avsnittLista = podd.Avsnitt; 
-            }
-        }
+        //public List<Avsnitt> GetAll(int i)
+        //{
+        //    //try
+        //    //{
+        //    //    podcastLista = dataManager.DeserializePodcast();
+        //    //    Podcast podd = podcastLista[i];
+        //    //    avsnittLista = podd.Avsnitt;
+        //    //}
+        //}
     }
 }

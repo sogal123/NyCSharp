@@ -18,42 +18,17 @@ namespace Window
 {
     public partial class Form1 : Form
     {
-        PodcastController podcastController;
-        DataManager datamanager;
+        private PodcastController podcastController;
+        private DataManager datamanager;
+
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
             datamanager = new DataManager();
-           fyllFeed();
+            fyllFeed();
             fyllCb();
         }
-
-
-        private void btnNyPodcast_Click(object sender, EventArgs e)
-        {
-
-
-            /*
-            try
-            {
-                podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
-                //string url = tbUrl.Text;
-                datamanager.Feedläsare();
-            }
-            catch (FileNotFoundException error)
-            {
-                Console.WriteLine(error.Message + "Hittar inte filen");
-            }
-
-            //cbFrekvens.Text,string namn, int uppdateringsFrekvens, string url, string kategori, List< Avsnitt > avsnitt
-            }
-             */
-
-        }
-
-
-
 
         //private void btnSparaPodcast_Click(object sender, EventArgs e)
         //{
@@ -87,16 +62,12 @@ namespace Window
 
                     lvPodcast.Items.Add(lista);
                     lvPodcast.FullRowSelect = true;
-
                 }
             }
         }
-                    
-            
-        
-        private void fyllCb()
-            {
 
+        private void fyllCb()
+        {
             cbFrekvens.Items.Add(" ");
             cbFrekvens.Items.Add("1min");
             cbFrekvens.Items.Add("2min");
@@ -108,9 +79,14 @@ namespace Window
             cbKategori.SelectedIndex = -1;
         }
 
+        private void btnNyPodcast_MouseClick(object sender, MouseEventArgs e)
+        {
+            var namn = tbNamn.Text;
+            var url = tbUrl.Text;
+            var uppdateringsFrekvens = cbFrekvens.SelectedItem.ToString();
+            var kategori = cbKategori.SelectedItem.ToString();
 
-            
-
-        
+            podcastController.CreatePodcastAsync(namn, url, uppdateringsFrekvens, kategori);
+        }
     }
 }

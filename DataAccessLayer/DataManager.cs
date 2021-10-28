@@ -12,18 +12,14 @@ namespace DataAccessLayer
 {
     public class DataManager
     {
-
-        public void SerializePodcast(List<Podcast> items)
+        public void SerializePodcast(List<Podcast> podcasts)
         {
-
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
-                using (FileStream fileStreamOut = new FileStream("Podcasts.xml", FileMode.Create, FileAccess.Write))
-
-
+                XmlSerializer xmlSerializer = new XmlSerializer(podcasts.GetType());
+                using (FileStream outFile = new FileStream("Podcasts.xml", FileMode.Create, FileAccess.Write))
                 {
-                    xmlSerializer.Serialize(fileStreamOut, items);
+                    xmlSerializer.Serialize(outFile, podcasts);
                 }
             }
             catch (Exception)
@@ -34,7 +30,6 @@ namespace DataAccessLayer
 
         public List<Podcast> DeserializePodcast()
         {
-
             try
             {
                 List<Podcast> listReturned;
@@ -42,11 +37,8 @@ namespace DataAccessLayer
                 using (FileStream fileStreamIn = new FileStream("Podcasts.xml", FileMode.Open, FileAccess.Read))
                 {
                     listReturned = (List<Podcast>)xmlSerializer.Deserialize(fileStreamIn);
-
                 }
                 return listReturned;
-
-
             }
             catch (Exception)
             {
@@ -54,15 +46,12 @@ namespace DataAccessLayer
             }
         }
 
-
         public void SerializeKategori(List<Kategori> items)
         {
-
             try
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Kategori>));
                 using (FileStream fileStreamOut = new FileStream("Podcasts.xml", FileMode.Create, FileAccess.Write))
-
 
                 {
                     xmlSerializer.Serialize(fileStreamOut, items);
@@ -73,6 +62,7 @@ namespace DataAccessLayer
                 throw new SerializerException("Podcasts.xml", "Could not serialize file");
             }
         }
+
         public List<Kategori> DeserializeKategori()
         {
             try
@@ -84,7 +74,6 @@ namespace DataAccessLayer
                     lista = (List<Kategori>)xmlSerializer.Deserialize(fileStreamIn);
                 }
                 return lista;
-
             }
             catch (Exception)
             {
@@ -121,13 +110,12 @@ namespace DataAccessLayer
                     data.Add(item.Title.Text);
                     data.Add(item.Summary.Text);
                 }
-
             }
             catch (FileNotFoundException)
             {
                 Console.WriteLine("Hittar inte filen");
             }
-           return data;
+            return data;
         }
     }
 }
