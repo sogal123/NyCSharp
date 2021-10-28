@@ -14,9 +14,10 @@ namespace DataAccessLayer.Repository
 
         public PodcastRepository()
         {
+            podcastLista = new List<Podcast>();
             dataManager = new DataManager();
             podcastLista = GetAll();
-            podcastLista = new List<Podcast>();
+            
         }
 
         public void Create(Podcast podcast)
