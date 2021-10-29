@@ -4,6 +4,7 @@ using System.Text;
 using Model;
 using DataAccessLayer;
 using DataAccessLayer.ExceptionClass;
+using System.Linq;
 
 namespace DataAccessLayer.Repository
 {
@@ -25,13 +26,17 @@ namespace DataAccessLayer.Repository
             SaveChanges();
         }
 
-        public void Delete(int i)
+        public void Delete(string podcast)
         {
-            if (i >= 0)
-            {
-                podcastLista.RemoveAt(i);
-                SaveChanges();
-            }
+            var podquery = from pod in podcastLista
+                           where pod.Namn != podcast
+                           select pod;
+                           podcastLista = podquery.ToList();
+
+
+
+            SaveChanges();
+            
         }
 
         public List<Podcast> GetAll()
@@ -61,6 +66,9 @@ namespace DataAccessLayer.Repository
             dataManager.SerializePodcast(podcastLista);
         }
 
-
+        public void Delete(int index)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

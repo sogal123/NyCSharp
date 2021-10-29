@@ -24,7 +24,7 @@ namespace Window
         AvsnittController avsnittController;
         PodcastRepository podcastRepository;
         KategoriController kategoriController;
-        private int selectedPodcast = 0;
+        string valdPodd;
         public Form1()
         {
             InitializeComponent();
@@ -208,7 +208,7 @@ namespace Window
             if (lvPodcast.SelectedItems.Count == 1)
             {
 
-                var valdPodd = lvPodcast.SelectedItems[0].Text;
+                valdPodd = lvPodcast.SelectedItems[0].Text;
 
                 foreach (Podcast podd in podcastController.getAll())
                 {
@@ -311,9 +311,9 @@ namespace Window
 
                     for (int i = lvPodcast.SelectedItems.Count - 1; i >= 0; i--)
                     {
-                        ListViewItem valdPodd = lvPodcast.SelectedItems[i];
-                       // int valdPoddIndex = lvPodcast.Items[valdPodd.Index];
-                        podcastController.DeletePodcast(valdPoddIndex);
+                        
+                       
+                        podcastController.DeletePodcast(valdPodd);
                         Console.WriteLine("Podcasten är borttagen");
                         fyllFeed();
                     }

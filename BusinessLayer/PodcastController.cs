@@ -34,9 +34,9 @@ namespace BusinessLayer
             podcastRepository.Create(podcast);
         }
         
-        public void DeletePodcast(int i)
+        public void DeletePodcast(string podcast)
         {
-            podcastRepository.Delete(i);
+            podcastRepository.Delete(podcast);
         }
 
         public string GetPodcastAtIndex(int i)
