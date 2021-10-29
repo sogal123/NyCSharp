@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Model;
 using DataAccessLayer;
-using DataAccessLayer.ExceptionClass;
 using System.Linq;
 
 namespace DataAccessLayer.Repository

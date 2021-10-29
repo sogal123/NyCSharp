@@ -5,7 +5,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 using Model;
-using DataAccessLayer.ExceptionClass;
+using DataAccessLayer;
 using System.ServiceModel.Syndication;
 
 namespace DataAccessLayer

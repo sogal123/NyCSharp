@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccessLayer.ExceptionClass
+namespace DataAccessLayer
 {
     public class SerializerException : Exception
     {

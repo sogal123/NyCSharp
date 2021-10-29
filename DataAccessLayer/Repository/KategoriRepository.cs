@@ -2,7 +2,7 @@
 using Model;
 using System.Collections.Generic;
 using System.Text;
-using DataAccessLayer.ExceptionClass;
+using DataAccessLayer;
 using System.Linq;
 
 namespace DataAccessLayer.Repository

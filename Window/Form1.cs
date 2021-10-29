@@ -1,4 +1,5 @@
 ﻿using BusinessLayer;
+using DataAccessLayer;
 using DataAccessLayer.Repository;
 using Model;
 using System;
@@ -45,13 +46,20 @@ namespace Window
 
 
 
+            try{
+                //Validator.FörKortInput(tbNamn.Text);
+                //Validator.TommaTextFält(tbUrl.Text);
 
-            podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
+                podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
 
 
-            podcastController.getAll();
-            fyllFeed();
-
+                podcastController.getAll();
+                fyllFeed();
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.Message);
+            }
 
             //datamanager.FeedLäsare(tbUrl.Text);
             //}
