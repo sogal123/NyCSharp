@@ -286,10 +286,7 @@ namespace Window
         }
 
 
-        private void btnTaBortKategori_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
 
 
@@ -311,8 +308,6 @@ namespace Window
 
                     for (int i = lvPodcast.SelectedItems.Count - 1; i >= 0; i--)
                     {
-                        
-                       
                         podcastController.DeletePodcast(valdPodd);
                         Console.WriteLine("Podcasten är borttagen");
                         fyllFeed();
@@ -324,9 +319,30 @@ namespace Window
                 }
             }
 
+
+        }
+        private void btnTaBortKategori_Click(object sender, EventArgs e)
+        {
+            if (lbKategori.SelectedItems.Count >= 0)
+            {
+                var confirmation = MessageBox.Show("Are you sure you want to delete the category " + "?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                if (confirmation == DialogResult.OK)
+                {
+                    for (int i = lbKategori.SelectedItems.Count - 1; i >= 0; i--)
+                    {
+                        kategoriController.DeleteKategori(valdPodd);
+                        Console.WriteLine("Kategorin är borttagen");
+                        fyllFeed();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Gick inte att ta bort podcast");
+                }
+                }
         }
 
-      
+
     }
 }
 

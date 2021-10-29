@@ -28,9 +28,9 @@ namespace BusinessLayer
             kategoriRepository.Create(kategori);
         }
 
-    public void DeleteKategori(int index)
+    public void DeleteKategori(string kategori)
         {
-            kategoriRepository.Delete(index);
+            kategoriRepository.Delete(kategori);
         }
 
     public void UpdateKategori(int index, Kategori kategori)

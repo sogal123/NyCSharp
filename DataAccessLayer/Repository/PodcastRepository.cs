@@ -25,7 +25,7 @@ namespace DataAccessLayer.Repository
             podcastLista.Add(podcast);
             SaveChanges();
         }
-
+        
         public void Delete(string podcast)
         {
             var podquery = from pod in podcastLista
@@ -33,9 +33,7 @@ namespace DataAccessLayer.Repository
                            select pod;
                            podcastLista = podquery.ToList();
 
-
-
-            SaveChanges();
+           SaveChanges();
             
         }
 
@@ -66,9 +64,6 @@ namespace DataAccessLayer.Repository
             dataManager.SerializePodcast(podcastLista);
         }
 
-        public void Delete(int index)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

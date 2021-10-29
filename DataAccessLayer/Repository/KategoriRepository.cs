@@ -3,6 +3,7 @@ using Model;
 using System.Collections.Generic;
 using System.Text;
 using DataAccessLayer.ExceptionClass;
+using System.Linq;
 
 namespace DataAccessLayer.Repository
 {
@@ -24,15 +25,15 @@ namespace DataAccessLayer.Repository
             SaveChanges();
         }
 
-        public void Delete(int index)
+        public void Delete(string kategori)
         {
-            if (index >= 0)
-            {
-                kategoriLista.RemoveAt(index);
-                SaveChanges();
-            }
+            var katfråga = from kat in kategoriLista
+                           where kat.KategoriNamn != kategori
+                           select kat;
+                           kategoriLista = katfråga.ToList();
+            SaveChanges();
         }
-
+       
         public List<Kategori> GetAll()
         {
             List<Kategori> podcastLista = new List<Kategori>();
@@ -59,5 +60,7 @@ namespace DataAccessLayer.Repository
         {
             dataManager.SerializeKategori(kategoriLista);
         }
+
+        
     }
 }
