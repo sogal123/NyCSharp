@@ -56,7 +56,7 @@ namespace Window
             this.lblPodcasts = new System.Windows.Forms.Label();
             this.lblBeskrivning = new System.Windows.Forms.Label();
             this.lblAvsnittsLista = new System.Windows.Forms.Label();
-            this.lbKategori = new System.Windows.Forms.ListBox();
+            this.lbKategori = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // lvPodcast
@@ -325,12 +325,13 @@ namespace Window
             // 
             // lbKategori
             // 
-            this.lbKategori.FormattingEnabled = true;
-            this.lbKategori.ItemHeight = 20;
-            this.lbKategori.Location = new System.Drawing.Point(863, 45);
+            this.lbKategori.HideSelection = false;
+            this.lbKategori.Location = new System.Drawing.Point(865, 45);
             this.lbKategori.Name = "lbKategori";
-            this.lbKategori.Size = new System.Drawing.Size(408, 364);
+            this.lbKategori.Size = new System.Drawing.Size(451, 112);
             this.lbKategori.TabIndex = 25;
+            this.lbKategori.UseCompatibleStateImageBehavior = false;
+            this.lbKategori.View = System.Windows.Forms.View.Details;
             // 
             // Form1
             // 
@@ -399,7 +400,7 @@ namespace Window
         private System.Windows.Forms.Label lblPodcasts;
         private System.Windows.Forms.Label lblBeskrivning;
         private System.Windows.Forms.Label lblAvsnittsLista;
-        private System.Windows.Forms.ListBox lbKategori;
+        private System.Windows.Forms.ListView lbKategori;
     }
 }
 

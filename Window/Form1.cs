@@ -257,7 +257,7 @@ namespace Window
             fyllKategori();
             if (lbKategori.SelectedItems.Count == 1)
             {
-                string kategoriNamn = lbKategori.SelectedItem.ToString();
+                string kategoriNamn = lbKategori.SelectedItems.ToString();
                 //Måste fixas
                 tbNyKategori.Text = kategoriNamn;
             }

@@ -27,10 +27,10 @@ namespace DataAccessLayer.Repository
 
         public void Delete(string kategori)
         {
-            var katfråga = from kat in kategoriLista
+            var katfraga = from kat in kategoriLista
                            where kat.KategoriNamn != kategori
                            select kat;
-                           kategoriLista = katfråga.ToList();
+                           kategoriLista = katfraga.ToList();
             SaveChanges();
         }
        
