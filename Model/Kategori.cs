@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Model
 {
+    [Serializable, XmlRoot("Kategori")]
     public class Kategori
     {
 

@@ -61,7 +61,7 @@ namespace DataAccessLayer
             try
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Kategori>));
-                using (FileStream fileStreamOut = new FileStream("Podcasts.xml", FileMode.Create, FileAccess.Write))
+                using (FileStream fileStreamOut = new FileStream("Kategori.xml", FileMode.Create, FileAccess.Write))
 
 
                 {
@@ -70,7 +70,7 @@ namespace DataAccessLayer
             }
             catch (Exception)
             {
-                throw new SerializerException("Podcasts.xml", "Could not serialize file");
+                throw new SerializerException("Kategori.xml", "Could not serialize file");
             }
         }
         public List<Kategori> DeserializeKategori()
@@ -79,7 +79,7 @@ namespace DataAccessLayer
             {
                 List<Kategori> lista;
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Kategori>));
-                using (FileStream fileStreamIn = new FileStream("Podcasts.xml", FileMode.Open, FileAccess.Read))
+                using (FileStream fileStreamIn = new FileStream("Kategori.xml", FileMode.Open, FileAccess.Read))
                 {
                     lista = (List<Kategori>)xmlSerializer.Deserialize(fileStreamIn);
                 }
@@ -88,7 +88,7 @@ namespace DataAccessLayer
             }
             catch (Exception)
             {
-                throw new SerializerException("Podcasts.xml", "Could not deserialize file");
+                throw new SerializerException("Kategori.xml", "Could not deserialize file");
             }
         }
 

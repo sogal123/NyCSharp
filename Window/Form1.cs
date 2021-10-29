@@ -22,6 +22,7 @@ namespace Window
         //List<Podcast> podcastLista;
         AvsnittController avsnittController;
         PodcastRepository podcastRepository;
+        KategoriController kategoriController;
         public Form1()
         {
             InitializeComponent();
@@ -114,7 +115,6 @@ namespace Window
         }
                     
             
-        
         private void fyllCb()
             {
 
@@ -149,12 +149,31 @@ namespace Window
 
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
+            string KategoriNamn = tbNyKategori.Text;
+
+            Kategori kategori = new Kategori(KategoriNamn);
+            kategoriController.CreateKategori(kategori);
+            
+            
+            
+            //tbNyKategori.Text = string.Empty;
+            // kategoriController.getAll();
 
         }
 
-        private void btnTaBortKategori_Click(object sender, EventArgs e)
+        //private void btnNyPodcast_Click(object sender, EventArgs e)
+        //{
+
+        //    podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
+
+        //    podcastController.getAll();
+        //    fyllFeed();
+
+            private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
 
         }
+
+       
     }
 }
