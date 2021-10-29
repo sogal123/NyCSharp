@@ -37,7 +37,6 @@ namespace Window
             this.tbNamn = new System.Windows.Forms.TextBox();
             this.tbUrl = new System.Windows.Forms.TextBox();
             this.tbNyKategori = new System.Windows.Forms.TextBox();
-            this.lbKategori = new System.Windows.Forms.ListBox();
             this.lbAvsnittsLista = new System.Windows.Forms.ListBox();
             this.tbBeskrivning = new System.Windows.Forms.TextBox();
             this.cbFrekvens = new System.Windows.Forms.ComboBox();
@@ -57,6 +56,7 @@ namespace Window
             this.lblPodcasts = new System.Windows.Forms.Label();
             this.lblBeskrivning = new System.Windows.Forms.Label();
             this.lblAvsnittsLista = new System.Windows.Forms.Label();
+            this.lbKategori = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lvPodcast
@@ -119,17 +119,6 @@ namespace Window
             this.tbNyKategori.Name = "tbNyKategori";
             this.tbNyKategori.Size = new System.Drawing.Size(240, 26);
             this.tbNyKategori.TabIndex = 3;
-            // 
-            // lbKategori
-            // 
-            this.lbKategori.FormattingEnabled = true;
-            this.lbKategori.ItemHeight = 20;
-            this.lbKategori.Location = new System.Drawing.Point(864, 45);
-            this.lbKategori.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.lbKategori.Name = "lbKategori";
-            this.lbKategori.Size = new System.Drawing.Size(451, 364);
-            this.lbKategori.TabIndex = 4;
-            this.lbKategori.SelectedIndexChanged += new System.EventHandler(this.lbKategori_SelectedIndexChanged);
             // 
             // lbAvsnittsLista
             // 
@@ -334,11 +323,21 @@ namespace Window
             this.lblAvsnittsLista.TabIndex = 24;
             this.lblAvsnittsLista.Text = "Lista över avsnitt:";
             // 
+            // lbKategori
+            // 
+            this.lbKategori.FormattingEnabled = true;
+            this.lbKategori.ItemHeight = 20;
+            this.lbKategori.Location = new System.Drawing.Point(863, 45);
+            this.lbKategori.Name = "lbKategori";
+            this.lbKategori.Size = new System.Drawing.Size(408, 364);
+            this.lbKategori.TabIndex = 25;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1604, 998);
+            this.Controls.Add(this.lbKategori);
             this.Controls.Add(this.lblAvsnittsLista);
             this.Controls.Add(this.lblBeskrivning);
             this.Controls.Add(this.lblPodcasts);
@@ -358,7 +357,6 @@ namespace Window
             this.Controls.Add(this.cbFrekvens);
             this.Controls.Add(this.tbBeskrivning);
             this.Controls.Add(this.lbAvsnittsLista);
-            this.Controls.Add(this.lbKategori);
             this.Controls.Add(this.tbNyKategori);
             this.Controls.Add(this.tbUrl);
             this.Controls.Add(this.tbNamn);
@@ -382,7 +380,6 @@ namespace Window
         private System.Windows.Forms.TextBox tbNamn;
         private System.Windows.Forms.TextBox tbUrl;
         private System.Windows.Forms.TextBox tbNyKategori;
-        private System.Windows.Forms.ListBox lbKategori;
         private System.Windows.Forms.ListBox lbAvsnittsLista;
         private System.Windows.Forms.TextBox tbBeskrivning;
         private System.Windows.Forms.ComboBox cbFrekvens;
@@ -402,6 +399,7 @@ namespace Window
         private System.Windows.Forms.Label lblPodcasts;
         private System.Windows.Forms.Label lblBeskrivning;
         private System.Windows.Forms.Label lblAvsnittsLista;
+        private System.Windows.Forms.ListBox lbKategori;
     }
 }
 

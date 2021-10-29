@@ -25,6 +25,7 @@ namespace Window
         PodcastRepository podcastRepository;
         KategoriController kategoriController;
         string valdPodd;
+        string valdKategori;
         public Form1()
         {
             InitializeComponent();
@@ -309,7 +310,7 @@ namespace Window
                     for (int i = lvPodcast.SelectedItems.Count - 1; i >= 0; i--)
                     {
                         podcastController.DeletePodcast(valdPodd);
-                        Console.WriteLine("Podcasten är borttagen");
+                        Console.WriteLine(i + "Podcasten är borttagen");
                         fyllFeed();
                     }
                 }
@@ -330,9 +331,12 @@ namespace Window
                 {
                     for (int i = lbKategori.SelectedItems.Count - 1; i >= 0; i--)
                     {
-                        kategoriController.DeleteKategori(valdPodd);
-                        Console.WriteLine("Kategorin är borttagen");
-                        fyllFeed();
+                        
+                        {
+                            kategoriController.DeleteKategori(valdKategori);
+                            Console.WriteLine(i + "Kategorin är borttagen");
+                            fyllKategori();
+                        }
                     }
                 }
                 else

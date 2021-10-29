@@ -8,7 +8,7 @@ namespace BusinessLayer
 {
     public class KategoriController
     {
-        IRepository<Kategori> kategoriRepository;
+        KategoriRepository kategoriRepository;
         List<Kategori> kategoriLista;
 
         public KategoriController()
@@ -32,6 +32,7 @@ namespace BusinessLayer
         {
             kategoriRepository.Delete(kategori);
         }
+
 
     public void UpdateKategori(int index, Kategori kategori)
         {

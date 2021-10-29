@@ -13,8 +13,8 @@ namespace DataAccessLayer.Repository
         List<Kategori> kategoriLista;
         public KategoriRepository()
         {
-            dataManager = new DataManager();
             kategoriLista = new List<Kategori>(); 
+            dataManager = new DataManager();
             kategoriLista = GetAll();
             
         }
