@@ -127,6 +127,8 @@ namespace Window
             cbKategori.Items.Add(" ");
             cbKategori.Items.Add("Humor");
             cbKategori.Items.Add("Historia");
+            cbKategori.Items.Add("Underhållning");
+
             cbKategori.SelectedIndex = -1;
         }
 
@@ -138,6 +140,21 @@ namespace Window
             lvPodcast.Sorting = SortOrder.Descending;
 
             //if (lvPodcast.SelectedItems.Count == )
+        }
+
+        private void btnSparaKategori_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNyKategori_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTaBortKategori_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
