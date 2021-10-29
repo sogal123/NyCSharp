@@ -8,7 +8,7 @@ namespace BusinessLayer
 {
     public class KategoriController
     {
-        readonly IRepository<Kategori> kategoriRepository;
+        IRepository<Kategori> kategoriRepository;
         List<Kategori> kategoriLista;
 
         public KategoriController()
