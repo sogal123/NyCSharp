@@ -29,6 +29,7 @@ namespace Window
             podcastController = new PodcastController();
             avsnittController = new AvsnittController();
             podcastRepository = new PodcastRepository();
+            kategoriController = new KategoriController();
             fyllFeed();
             fyllCb();
         }
@@ -153,6 +154,7 @@ namespace Window
 
             Kategori kategori = new Kategori(KategoriNamn);
             kategoriController.CreateKategori(kategori);
+            
             
             
             
