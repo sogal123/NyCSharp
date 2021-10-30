@@ -14,7 +14,7 @@ namespace DataAccessLayer.Repository
         public List<Podcast> podcastLista;
         public DataManager dataManager;
 
-
+        //hej
         public AvsnittRepository()
         {
             podcastLista = new List<Podcast>();
