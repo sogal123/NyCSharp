@@ -194,7 +194,6 @@ namespace Window
                         fyllFeed();
                         Console.WriteLine("Podcast sparad!");
                     }
-                    fyllFeed();
                
                 }
             }
