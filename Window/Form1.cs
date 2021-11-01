@@ -188,12 +188,13 @@ namespace Window
                 {
                     if (podd.Namn.Equals(namn))
                     {
-
+                        
                         podcastController.UpdatePodcast(valdPoddInt, namn, url, frekvens, kategori);
 
                         fyllFeed();
                         Console.WriteLine("Podcast sparad!");
                     }
+                    fyllFeed();
                
                 }
             }
