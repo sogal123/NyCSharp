@@ -22,12 +22,13 @@ namespace Window
     public partial class Form1 : Form
     {
         PodcastController podcastController;
-        //List<Podcast> podcastLista;
+        List<Podcast> podcastLista;
         AvsnittController avsnittController;
         PodcastRepository podcastRepository;
         KategoriController kategoriController;
         string valdPodd;
         string valdKategori;
+        int valdPoddInt = 1;
 
         public Form1()
         {
@@ -36,6 +37,7 @@ namespace Window
             avsnittController = new AvsnittController();
             podcastRepository = new PodcastRepository();
             kategoriController = new KategoriController();
+            podcastLista = podcastController.getAll();
 
             fyllFeed();
             fyllCb();
@@ -162,26 +164,43 @@ namespace Window
         }
         private void btnSparaPodcast_Click(object sender, EventArgs e)
         {
-            //    fyllTB();
+          
 
-            //    try
-            //    {
-            //        //Validering 
-            //        var poddLista = podcastController.getAll();
-            //        Podcast podd = poddLista[selectedPodcast];
-            //        string url = tbUrl.Text;
-            //        string namn = tbNamn.Text;
-            //        string frekvens = cbFrekvens.Text;
-            //        string kategori = cbKategori.Text;
-            //        //int i = lvPodcast.SelectedItems[0];
 
-            //        podcastController.UpdatePodcast(selectedPodcast, namn, url, frekvens, kategori);
-            //        fyllFeed();
-            //    }
-            //    catch(Exception error)
-            //    {
-            //        Console.WriteLine(error.Message + "Hittar inte podcast att uppdatera");
-            //    }
+            try
+            {
+                //Validering 
+                var poddLista = podcastController.getAll();
+                Podcast podd = poddLista[valdPoddInt];
+                string url = tbUrl.Text;
+                string namn = tbNamn.Text;
+                string frekvens = cbFrekvens.Text;
+                string kategori = cbKategori.Text;
+                //int i = lvPodcast.SelectedItems[0];
+
+                //for (int i = lvPodcast.SelectedItems.Count - 1; i >= 0; i--)
+                //{
+                //    podcastController.DeletePodcast(valdPodd);
+                //    Console.WriteLine(i + "Podcasten är borttagen");
+                //    fyllFeed();
+                //}
+                //foreach (Podcast p in podcastLista)
+                {
+                    if (podd.Namn.Equals(namn))
+                    {
+
+                        podcastController.UpdatePodcast(valdPoddInt, namn, url, frekvens, kategori);
+
+                        fyllFeed();
+                        Console.WriteLine("Podcast sparad!");
+                    }
+               
+                }
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.Message + "Hittar inte podcast att uppdatera");
+            }
 
 
 

@@ -58,16 +58,24 @@ namespace BusinessLayer
 
         public  void UpdatePodcast(int valdPodcast, string namn, string url, string uppdateringsFrekvens, string kategori)
         {
-            var podcastLista = podcastRepository.GetAll();
+            try
+            {
+                //var podcastLista = podcastRepository.GetAll();
+               
+                Podcast podd = podcastList[valdPodcast];
+                namn = podd.Namn;
+                url = podd.Url;
+                uppdateringsFrekvens = podd.UppdateringsFrekvens;
+                kategori = podd.Kategori;
 
-            Podcast podd = podcastLista[valdPodcast];
-            namn = podd.Namn;
-            url = podd.Url;
-            uppdateringsFrekvens = podd.UppdateringsFrekvens;
-            kategori = podd.Kategori;
 
-           
-            podcastRepository.Update(valdPodcast, podd);
+                podcastRepository.Update(valdPodcast, podd);
+                
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("Hittar inte podd" + error.Message);
+            }
         }
         }
 

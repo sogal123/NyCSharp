@@ -55,8 +55,10 @@ namespace DataAccessLayer.Repository
             if (i >= 0)
             {
                 podcastLista[i] = podcast;
+                
             }
             SaveChanges();
+            
         }
         public void SaveChanges()
         {
