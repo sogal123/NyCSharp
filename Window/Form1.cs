@@ -47,13 +47,12 @@ namespace Window
 
         private void btnNyPodcast_Click(object sender, EventArgs e)
         {
-
-
-
             try
             {
                 //Validator.FörKortInput(tbNamn.Text);
                 //Validator.TommaTextFält(tbUrl.Text);
+                Validator.TommaCbs(" ", cbKategori.SelectedItem); Validator.TommaCbs(" ", cbFrekvens.SelectedItem);
+                Validator.TommaTextFält(" ", tbUrl.Text); Validator.TommaTextFält(" ", tbNamn.Text);
 
                 podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
 
@@ -63,6 +62,7 @@ namespace Window
             }
             catch (Exception error)
             {
+                Felmeddelande(error);
                 Console.WriteLine(error.Message);
             }
 
@@ -76,6 +76,10 @@ namespace Window
             //cbFrekvens.Text,string namn, int uppdateringsFrekvens, string url, string kategori, List< Avsnitt > avsnitt
         }
 
+        private void Felmeddelande(Exception e)
+        {
+            MessageBox.Show("Något gick fel. " + e.Message);
+        }
 
 
 
@@ -164,12 +168,14 @@ namespace Window
         }
         private void btnSparaPodcast_Click(object sender, EventArgs e)
         {
-          
+
 
 
             try
             {
                 //Validering 
+                //Validator.TommaCbs(" ", cbKategori.SelectedItem); Validator.TommaCbs(" ", cbFrekvens.SelectedItem);
+                //Validator.TommaTextFält(" ", tbUrl.Text); Validator.TommaTextFält(" ", tbNamn.Text);
                 var poddLista = podcastController.getAll();
                 Podcast podd = poddLista[valdPoddInt];
                 string url = tbUrl.Text;
@@ -188,13 +194,13 @@ namespace Window
                 {
                     if (podd.Namn.Equals(namn))
                     {
-                        
+
                         podcastController.UpdatePodcast(valdPoddInt, namn, url, frekvens, kategori);
 
                         fyllFeed();
                         Console.WriteLine("Podcast sparad!");
                     }
-               
+
                 }
             }
             catch (Exception error)
@@ -292,28 +298,37 @@ namespace Window
 
         private void btnSparaKategori_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                Validator.TommaTextFält(" ", tbNyKategori.Text);
+            }
+            catch (Exception error)
+            {
+                Felmeddelande(error);
+            }
         }
 
-        private void btnNyKategori_Click(object sender, EventArgs e)
-        {
+            private void btnNyKategori_Click(object sender, EventArgs e)
+            {
+            try
+            {
+                Validator.TommaTextFält(" ", tbNyKategori.Text);
+                string KategoriNamn = tbNyKategori.Text;
 
-            string KategoriNamn = tbNyKategori.Text;
+                Kategori kategori = new Kategori(KategoriNamn);
+                kategoriController.CreateKategori(kategori);
 
-            Kategori kategori = new Kategori(KategoriNamn);
-            kategoriController.CreateKategori(kategori);
+                tbNyKategori.Text = string.Empty;
+                MessageBox.Show(KategoriNamn + " tillagd som en kategori!");
 
-            tbNyKategori.Text = string.Empty;
-            MessageBox.Show(KategoriNamn + " tillagd som en kategori!");
-
-            kategoriController.GetAll();
-            fyllKategori();
-        }
-
-
-
-
-
+                kategoriController.GetAll();
+                fyllKategori();
+            }
+            catch (Exception error)
+            {
+                Felmeddelande(error);
+            }
+}
 
 
 
@@ -348,28 +363,36 @@ namespace Window
         }
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
-            if (lbKategori.SelectedItems.Count >= 0)
+            try
             {
-                var confirmation = MessageBox.Show("Are you sure you want to delete the category " + "?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                if (confirmation == DialogResult.OK)
+                if (lbKategori.SelectedItems.Count >= 0)
                 {
-                    for (int i = lbKategori.SelectedItems.Count - 1; i >= 0; i--)
-                    {
+                    Validator.TommaTextFält(" ", tbNyKategori.Text);
 
+                    var confirmation = MessageBox.Show("Are you sure you want to delete the category " + "?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    if (confirmation == DialogResult.OK)
+                    {
+                        for (int i = lbKategori.SelectedItems.Count - 1; i >= 0; i--)
                         {
-                            kategoriController.DeleteKategori(valdKategori);
-                            Console.WriteLine(i + "Kategorin är borttagen");
-                            Console.WriteLine(valdKategori);
-                            fyllKategori();
+
+                            {
+                                kategoriController.DeleteKategori(valdKategori);
+                                Console.WriteLine(i + "Kategorin är borttagen");
+                                Console.WriteLine(valdKategori);
+                                fyllKategori();
+                            }
                         }
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Gick inte att ta bort podcast");
-                }
+            }
+            catch (Exception error)
+
+            {
+                Felmeddelande(error);
+
             }
         }
+
 
         private void TickTimer()
         {
@@ -388,7 +411,7 @@ namespace Window
             if (lbKategori.SelectedItems.Count > 0)
             {
                 valdKategori = lbKategori.SelectedItems[0].Text;
-                
+
                 tbNyKategori.Text = valdKategori;
 
                 var poddLista = podcastController.getAll();
@@ -397,7 +420,7 @@ namespace Window
                 foreach (Podcast podd in poddLista)
 
                 {
-                if (podd.Kategori.Equals(valdKategori) && podd != null)
+                    if (podd.Kategori.Equals(valdKategori) && podd != null)
                     {
                         string antalAvsnitt = podd.AvsnittLista.Count.ToString();
 
@@ -405,9 +428,9 @@ namespace Window
                         katLista.SubItems.Add(antalAvsnitt);
                         katLista.SubItems.Add(podd.UppdateringsFrekvens);
                         katLista.SubItems.Add(podd.Kategori);
-                        
+
                         lvPodcast.Items.Add(katLista);
-                            
+
                         Console.WriteLine(katLista);
 
                     }
@@ -420,52 +443,52 @@ namespace Window
 }
 
 
- 
 
 
 
-    
 
 
 
-                //int valdPoddIndex = lvPodcast.SelectedItems.IndexOf(ListViewItem selectedPodcast);
-
-                //if (lvPodcast.SelectedIndex)
-                //    podcastController.DeletePodcast(namn);
-                //Console.WriteLine(namn + " är borttagen");
 
 
-                //
-                ////int valdPodd = selectedPodcast ? lvPodcast.SelectedItems[0].Index :[" "] ;
-                //string poddNamn = lvPodcast.SelectedItems[0].ToString();
+//int valdPoddIndex = lvPodcast.SelectedItems.IndexOf(ListViewItem selectedPodcast);
 
-                //foreach (ListViewItem podd in lvPodcast.SelectedItems)
-                //{
-                //    
-                //}
+//if (lvPodcast.SelectedIndex)
+//    podcastController.DeletePodcast(namn);
+//Console.WriteLine(namn + " är borttagen");
 
 
+//
+////int valdPodd = selectedPodcast ? lvPodcast.SelectedItems[0].Index :[" "] ;
+//string poddNamn = lvPodcast.SelectedItems[0].ToString();
 
-                //
-                //if (selectedPodcast > 0)
-                //{
+//foreach (ListViewItem podd in lvPodcast.SelectedItems)
+//{
+//    
+//}
 
 
-                //DialogResult confirmation = MessageBox.Show("Är du säker att du vill ta bort " + poddNamn + "?" + MessageBoxButtons.YesNo);
-                //if (confirmation == DialogResult.Yes) { 
-                //IndexOf(valdPodd);
-                //
 
-                //}
+//
+//if (selectedPodcast > 0)
+//{
 
-                //}
-            
-            //public int IndexOf(ListViewItem item)
-            //{
-            //    int valdPodd = IndexOf(item);
-            //    return valdPodd;
-            //}
 
-        
-    
+//DialogResult confirmation = MessageBox.Show("Är du säker att du vill ta bort " + poddNamn + "?" + MessageBoxButtons.YesNo);
+//if (confirmation == DialogResult.Yes) { 
+//IndexOf(valdPodd);
+//
+
+//}
+
+//}
+
+//public int IndexOf(ListViewItem item)
+//{
+//    int valdPodd = IndexOf(item);
+//    return valdPodd;
+//}
+
+
+
 
