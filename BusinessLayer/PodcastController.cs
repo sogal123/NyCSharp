@@ -30,7 +30,7 @@ namespace BusinessLayer
         {
             List<Avsnitt> avsnittLista = avsnittRepository.HämtaAllaAvsnitt(url);
             DateTime NästaUppdatering = DateTime.Now;
-            Podcast podcast = new Podcast(namn, url, uppdateringsFrekvens, kategori, avsnittLista, NästaUppdatering);
+            Podcast podcast = new Podcast(namn, url, uppdateringsFrekvens, kategori, avsnittLista /*NästaUppdatering*/);
             podcastRepository.Create(podcast);
         }
         
@@ -62,21 +62,25 @@ namespace BusinessLayer
             return index;
         }
 
-        public  void UpdatePodcast(int valdPodcast, string namn, string url, string uppdateringsFrekvens, string kategori, DateTime NästaUppdatering)
-        { 
-            //var podcastLista = avsnittRepository.HämtaAllaAvsnitt(url);
-            List<Avsnitt> avsnittslista = avsnittRepository.HämtaAllaAvsnitt(url);
-            Podcast podd = new Podcast(namn, url, uppdateringsFrekvens, kategori, avsnittslista, NästaUppdatering);
-
-                //podcastLista[valdPodcast];
-            //namn = podd.Namn;
-            //url = podd.Url;
-            //uppdateringsFrekvens = podd.UppdateringsFrekvens;
-            //kategori = podd.Kategori;
+        //public  void UpdatePodcast(int valdPodcast, string namn, string url, string uppdateringsFrekvens, string kategori)
+        //{ 
+        //    //var podcastLista = avsnittRepository.HämtaAllaAvsnitt(url);
+        //    List<Avsnitt> avsnittslista = avsnittRepository.HämtaAllaAvsnitt(url);
+            
+        //    //DateTime tid = podd.NästaUppdatering;
 
            
-            podcastRepository.Update(valdPodcast, podd);
-        }
+        //    Podcast podd = new Podcast(namn, url, uppdateringsFrekvens, kategori, avsnittslista);
+            
+        //        //podcastLista[valdPodcast];
+        //    //namn = podd.Namn;
+        //    //url = podd.Url;
+        //    //uppdateringsFrekvens = podd.UppdateringsFrekvens;
+        //    //kategori = podd.Kategori;
+
+           
+        //    podcastRepository.Update(valdPodcast, podd);
+        //}
 
         
         }
