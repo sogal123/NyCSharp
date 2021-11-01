@@ -55,14 +55,9 @@ namespace DataAccessLayer.Repository
             if (i >= 0)
             {
                 podcastLista[i] = podcast;
+                
             }
             SaveChanges();
-        }
-
-        public int getIndex(string namn)
-        {
-            
-                return GetAll().FindIndex(podd => podd.Namn.Equals(namn));
             
         }
         public void SaveChanges()

@@ -15,32 +15,32 @@ namespace Model
         public string UppdateringsFrekvens { get; set; }
         public string Kategori { get; set; }
         public List<Avsnitt> AvsnittLista { get; set; }
-        public DateTime NästaUppdatering { get; set;  }
+        //public DateTime NästaUppdatering { get; set;  }
 
-        public Podcast(string namn,  string url, string uppdateringsFrekvens, string kategori, List<Avsnitt> avsnitt, DateTime nästauppdatering) 
+        public Podcast(string namn,  string url, string uppdateringsFrekvens, string kategori, List<Avsnitt> avsnitt) 
         {
             Namn = namn;
             UppdateringsFrekvens = uppdateringsFrekvens;
             Url = url;
             Kategori = kategori;
             AvsnittLista = avsnitt;
-            NästaUppdatering = nästauppdatering;
+
         }
 
         public Podcast()
         {
         }
 
-        public void Uppdatera()
-        {
-            //double frekvens = Convert.ToDouble(UppdateringsFrekvens);
-            //NästaUppdatering = DateTime.Now.AddMilliseconds(frekvens);
+        //public void Uppdatera()
+        //{
+        //    double frekvens = Convert.ToDouble(UppdateringsFrekvens);
+        //    NästaUppdatering = DateTime.Now.AddMilliseconds(frekvens);
 
-        }
-        public bool BehöverUppdateras()
-        {
-            return NästaUppdatering <= DateTime.Now;
-        }
+        //}
+        //public bool BehöverUppdateras()
+        //{
+        //    return NästaUppdatering <= DateTime.Now;
+        //}
 
         
     }

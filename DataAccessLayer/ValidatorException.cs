@@ -12,6 +12,6 @@ namespace DataAccessLayer
         {
             Fält = fält;
         }
-        
+
     }
 }

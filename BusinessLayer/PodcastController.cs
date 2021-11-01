@@ -29,8 +29,8 @@ namespace BusinessLayer
         public void CreatePodcast(string namn, string url, string uppdateringsFrekvens, string kategori)
         {
             List<Avsnitt> avsnittLista = avsnittRepository.HämtaAllaAvsnitt(url);
-            DateTime NästaUppdatering = DateTime.Now;
-            Podcast podcast = new Podcast(namn, url, uppdateringsFrekvens, kategori, avsnittLista, NästaUppdatering);
+
+            Podcast podcast = new Podcast(namn, url, uppdateringsFrekvens, kategori, avsnittLista);
             podcastRepository.Create(podcast);
         }
         
@@ -56,29 +56,27 @@ namespace BusinessLayer
 
         }
 
-        public int GetPodcastAtIndex(string namn)
+        public  void UpdatePodcast(int valdPodcast, string namn, string url, string uppdateringsFrekvens, string kategori)
         {
-            int index = podcastRepository.getIndex(namn);
-            return index;
+            try
+            {
+                //var podcastLista = podcastRepository.GetAll();
+               
+                Podcast podd = podcastList[valdPodcast];
+                namn = podd.Namn;
+                url = podd.Url;
+                uppdateringsFrekvens = podd.UppdateringsFrekvens;
+                kategori = podd.Kategori;
+
+
+                podcastRepository.Update(valdPodcast, podd);
+                
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("Hittar inte podd" + error.Message);
+            }
         }
-
-        public  void UpdatePodcast(int valdPodcast, string namn, string url, string uppdateringsFrekvens, string kategori, DateTime NästaUppdatering)
-        { 
-            //var podcastLista = avsnittRepository.HämtaAllaAvsnitt(url);
-            List<Avsnitt> avsnittslista = avsnittRepository.HämtaAllaAvsnitt(url);
-            Podcast podd = new Podcast(namn, url, uppdateringsFrekvens, kategori, avsnittslista, NästaUppdatering);
-
-                //podcastLista[valdPodcast];
-            //namn = podd.Namn;
-            //url = podd.Url;
-            //uppdateringsFrekvens = podd.UppdateringsFrekvens;
-            //kategori = podd.Kategori;
-
-           
-            podcastRepository.Update(valdPodcast, podd);
-        }
-
-        
         }
 
     }

@@ -22,32 +22,26 @@ namespace Window
     public partial class Form1 : Form
     {
         PodcastController podcastController;
-        //List<Podcast> podcastLista;
+        List<Podcast> podcastLista;
         AvsnittController avsnittController;
         PodcastRepository podcastRepository;
         KategoriController kategoriController;
-        List<Podcast> podcastLista;
         string valdPodd;
         string valdKategori;
+        int valdPoddInt = 1;
 
-        private Timer podcastTimer = new Timer();
         public Form1()
         {
-            podcastTimer.Interval = 1000;
-            podcastTimer.Tick += Timer_Tick;
-            podcastTimer.Start();
-
             InitializeComponent();
             podcastController = new PodcastController();
             avsnittController = new AvsnittController();
             podcastRepository = new PodcastRepository();
             kategoriController = new KategoriController();
             podcastLista = podcastController.getAll();
-            
+
             fyllFeed();
             fyllCb();
             fyllKategori();
-            //Timer();
         }
 
 
@@ -170,26 +164,43 @@ namespace Window
         }
         private void btnSparaPodcast_Click(object sender, EventArgs e)
         {
-            //    fyllTB();
+          
 
-            //    try
-            //    {
-            //        //Validering 
-            //        var poddLista = podcastController.getAll();
-            //        Podcast podd = poddLista[selectedPodcast];
-            //        string url = tbUrl.Text;
-            //        string namn = tbNamn.Text;
-            //        string frekvens = cbFrekvens.Text;
-            //        string kategori = cbKategori.Text;
-            //        //int i = lvPodcast.SelectedItems[0];
 
-            //        podcastController.UpdatePodcast(selectedPodcast, namn, url, frekvens, kategori);
-            //        fyllFeed();
-            //    }
-            //    catch(Exception error)
-            //    {
-            //        Console.WriteLine(error.Message + "Hittar inte podcast att uppdatera");
-            //    }
+            try
+            {
+                //Validering 
+                var poddLista = podcastController.getAll();
+                Podcast podd = poddLista[valdPoddInt];
+                string url = tbUrl.Text;
+                string namn = tbNamn.Text;
+                string frekvens = cbFrekvens.Text;
+                string kategori = cbKategori.Text;
+                //int i = lvPodcast.SelectedItems[0];
+
+                //for (int i = lvPodcast.SelectedItems.Count - 1; i >= 0; i--)
+                //{
+                //    podcastController.DeletePodcast(valdPodd);
+                //    Console.WriteLine(i + "Podcasten är borttagen");
+                //    fyllFeed();
+                //}
+                //foreach (Podcast p in podcastLista)
+                {
+                    if (podd.Namn.Equals(namn))
+                    {
+                        
+                        podcastController.UpdatePodcast(valdPoddInt, namn, url, frekvens, kategori);
+
+                        fyllFeed();
+                        Console.WriteLine("Podcast sparad!");
+                    }
+               
+                }
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.Message + "Hittar inte podcast att uppdatera");
+            }
 
 
 
@@ -369,6 +380,8 @@ namespace Window
         }
 
         private void lbKategori_SelectedIndexChanged_1(object sender, EventArgs e)
+
+
         {
 
 
@@ -400,64 +413,6 @@ namespace Window
                     }
                 }
 
-            }
-        }
-
-        //private void Timer()
-        //{
-        //    int frekvens = 0;
-
-        //    foreach(var podd in podcastLista)
-        //    {
-        //        var timer = new Timer();
-        //        timer.Tag = podd.Url;
-
-                
-
-        //        if (podd.UppdateringsFrekvens.Equals(1)){
-        //            frekvens = 60000;
-        //        }
-        //        if (podd.UppdateringsFrekvens.Equals(2))
-        //        {
-        //            frekvens = 120000;
-        //        }
-        //        if (podd.UppdateringsFrekvens.Equals(3))
-        //        {
-        //            frekvens = 180000;
-        //        }
-
-        //        //timer.Interval = frekvens;
-        //        timer.Enabled = true;
-        //        timer.Tick += Timer_Tick;
-        //        timer.Start();
-        //    }
-        //}
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-
-            foreach (var podd in podcastController.getAll())
-            {
-                if (podd.BehöverUppdateras())
-                {
-
-
-                    int poddIndex = podcastController.GetPodcastAtIndex(podd.Namn);
-                    podcastController.UpdatePodcast(poddIndex, podd.Namn, podd.Url, podd.UppdateringsFrekvens, podd.Kategori, podd.NästaUppdatering);
-                    //podd.Uppdatera();
-
-
-                    for (int i = 0; i < lvPodcast.Items.Count; i++)
-                    {
-                        if (podd.Namn.Equals(lvPodcast.Items[i].SubItems[0].Text))
-                        {
-                            var antalAvsnitt = Convert.ToString(podd.AvsnittLista.Count());
-                            lvPodcast.Items[i].SubItems[1].Text = antalAvsnitt;
-
-                            Console.WriteLine("Ticker fungerar" + " Nästa uppdatering är " + podd.Namn + " " + podd.NästaUppdatering);
-                        }
-                    }
-                }
             }
         }
     }
