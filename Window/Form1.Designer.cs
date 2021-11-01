@@ -302,13 +302,14 @@ namespace Window
             // lbKategori
             // 
             this.lbKategori.HideSelection = false;
-            this.lbKategori.Location = new System.Drawing.Point(577, 29);
+            this.lbKategori.Location = new System.Drawing.Point(576, 29);
             this.lbKategori.Margin = new System.Windows.Forms.Padding(2);
             this.lbKategori.Name = "lbKategori";
             this.lbKategori.Size = new System.Drawing.Size(302, 242);
             this.lbKategori.TabIndex = 25;
             this.lbKategori.UseCompatibleStateImageBehavior = false;
             this.lbKategori.View = System.Windows.Forms.View.List;
+            this.lbKategori.SelectedIndexChanged += new System.EventHandler(this.lbKategori_SelectedIndexChanged_1);
             // 
             // Form1
             // 

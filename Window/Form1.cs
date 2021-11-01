@@ -13,6 +13,7 @@ using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using System.Xml;
 
 
@@ -27,6 +28,7 @@ namespace Window
         KategoriController kategoriController;
         string valdPodd;
         string valdKategori;
+
         public Form1()
         {
             InitializeComponent();
@@ -262,13 +264,7 @@ namespace Window
 
         private void lbKategori_SelectedIndexChanged(object sender, EventArgs e)
         {
-            fyllKategori();
-            if (lbKategori.SelectedItems.Count == 1)
-            {
-                string kategoriNamn = lbKategori.SelectedItems.ToString();
-                //Måste fixas
-                tbNyKategori.Text = kategoriNamn;
-            }
+           
         }
 
 
@@ -343,6 +339,7 @@ namespace Window
                         {
                             kategoriController.DeleteKategori(valdKategori);
                             Console.WriteLine(i + "Kategorin är borttagen");
+                            Console.WriteLine(valdKategori);
                             fyllKategori();
                         }
                     }
@@ -354,7 +351,31 @@ namespace Window
                 }
         }
 
+        private void TickTimer()
+        {
+            var timer = new Timer();
+            {
 
+            }
+        }
+
+        private void lbKategori_SelectedIndexChanged_1(object sender, EventArgs e)
+        
+            {
+            {
+                
+                if (lbKategori.SelectedItems.Count > 0 )
+                {
+                    string kategoriNamn = lbKategori.SelectedItems.ToString();
+                    valdKategori = lbKategori.SelectedItems[0].Text;
+                    Console.WriteLine("Hello world!");
+                    //Måste fixas
+                    tbNyKategori.Text = kategoriNamn;
+                }
+            }
+        }
+
+        
     }
 }
 

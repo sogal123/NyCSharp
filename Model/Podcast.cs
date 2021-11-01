@@ -23,7 +23,7 @@ namespace Model
             Url = url;
             Kategori = kategori;
             AvsnittLista = avsnitt;
-            // Hej hej
+
         }
 
         public Podcast()
