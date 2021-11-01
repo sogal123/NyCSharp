@@ -29,8 +29,8 @@ namespace BusinessLayer
         public void CreatePodcast(string namn, string url, string uppdateringsFrekvens, string kategori)
         {
             List<Avsnitt> avsnittLista = avsnittRepository.HämtaAllaAvsnitt(url);
-
-            Podcast podcast = new Podcast(namn, url, uppdateringsFrekvens, kategori, avsnittLista);
+            DateTime NästaUppdatering = DateTime.Now;
+            Podcast podcast = new Podcast(namn, url, uppdateringsFrekvens, kategori, avsnittLista, NästaUppdatering);
             podcastRepository.Create(podcast);
         }
         
@@ -56,19 +56,29 @@ namespace BusinessLayer
 
         }
 
-        public  void UpdatePodcast(int valdPodcast, string namn, string url, string uppdateringsFrekvens, string kategori)
+        public int GetPodcastAtIndex(string namn)
         {
-            var podcastLista = podcastRepository.GetAll();
+            int index = podcastRepository.getIndex(namn);
+            return index;
+        }
 
-            Podcast podd = podcastLista[valdPodcast];
-            namn = podd.Namn;
-            url = podd.Url;
-            uppdateringsFrekvens = podd.UppdateringsFrekvens;
-            kategori = podd.Kategori;
+        public  void UpdatePodcast(int valdPodcast, string namn, string url, string uppdateringsFrekvens, string kategori, DateTime NästaUppdatering)
+        { 
+            //var podcastLista = avsnittRepository.HämtaAllaAvsnitt(url);
+            List<Avsnitt> avsnittslista = avsnittRepository.HämtaAllaAvsnitt(url);
+            Podcast podd = new Podcast(namn, url, uppdateringsFrekvens, kategori, avsnittslista, NästaUppdatering);
+
+                //podcastLista[valdPodcast];
+            //namn = podd.Namn;
+            //url = podd.Url;
+            //uppdateringsFrekvens = podd.UppdateringsFrekvens;
+            //kategori = podd.Kategori;
 
            
             podcastRepository.Update(valdPodcast, podd);
         }
+
+        
         }
 
     }

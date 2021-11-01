@@ -26,20 +26,28 @@ namespace Window
         AvsnittController avsnittController;
         PodcastRepository podcastRepository;
         KategoriController kategoriController;
+        List<Podcast> podcastLista;
         string valdPodd;
         string valdKategori;
 
+        private Timer podcastTimer = new Timer();
         public Form1()
         {
+            podcastTimer.Interval = 1000;
+            podcastTimer.Tick += Timer_Tick;
+            podcastTimer.Start();
+
             InitializeComponent();
             podcastController = new PodcastController();
             avsnittController = new AvsnittController();
             podcastRepository = new PodcastRepository();
             kategoriController = new KategoriController();
-
+            podcastLista = podcastController.getAll();
+            
             fyllFeed();
             fyllCb();
             fyllKategori();
+            //Timer();
         }
 
 
@@ -361,46 +369,95 @@ namespace Window
         }
 
         private void lbKategori_SelectedIndexChanged_1(object sender, EventArgs e)
-
-
         {
 
 
             if (lbKategori.SelectedItems.Count > 0)
             {
                 valdKategori = lbKategori.SelectedItems[0].Text;
-                Console.WriteLine("Hello world!");
-                //Måste fixas
+                
                 tbNyKategori.Text = valdKategori;
 
                 var poddLista = podcastController.getAll();
+                lvPodcast.Items.Clear();
 
                 foreach (Podcast podd in poddLista)
 
                 {
-
-
-                    if (podd.Kategori.Equals(valdKategori) && podd != null)
+                if (podd.Kategori.Equals(valdKategori) && podd != null)
                     {
-                        lvPodcast.Items.Clear();
                         string antalAvsnitt = podd.AvsnittLista.Count.ToString();
 
-                       
                         ListViewItem katLista = new ListViewItem(podd.Namn);
                         katLista.SubItems.Add(antalAvsnitt);
                         katLista.SubItems.Add(podd.UppdateringsFrekvens);
                         katLista.SubItems.Add(podd.Kategori);
-
+                        
                         lvPodcast.Items.Add(katLista);
                             
-                        Console.WriteLine(lvPodcast);
+                        Console.WriteLine(katLista);
 
                     }
                 }
 
+            }
+        }
+
+        //private void Timer()
+        //{
+        //    int frekvens = 0;
+
+        //    foreach(var podd in podcastLista)
+        //    {
+        //        var timer = new Timer();
+        //        timer.Tag = podd.Url;
+
+                
+
+        //        if (podd.UppdateringsFrekvens.Equals(1)){
+        //            frekvens = 60000;
+        //        }
+        //        if (podd.UppdateringsFrekvens.Equals(2))
+        //        {
+        //            frekvens = 120000;
+        //        }
+        //        if (podd.UppdateringsFrekvens.Equals(3))
+        //        {
+        //            frekvens = 180000;
+        //        }
+
+        //        //timer.Interval = frekvens;
+        //        timer.Enabled = true;
+        //        timer.Tick += Timer_Tick;
+        //        timer.Start();
+        //    }
+        //}
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+
+            foreach (var podd in podcastController.getAll())
+            {
+                if (podd.BehöverUppdateras())
+                {
 
 
+                    int poddIndex = podcastController.GetPodcastAtIndex(podd.Namn);
+                    podcastController.UpdatePodcast(poddIndex, podd.Namn, podd.Url, podd.UppdateringsFrekvens, podd.Kategori, podd.NästaUppdatering);
+                    //podd.Uppdatera();
 
+
+                    for (int i = 0; i < lvPodcast.Items.Count; i++)
+                    {
+                        if (podd.Namn.Equals(lvPodcast.Items[i].SubItems[0].Text))
+                        {
+                            var antalAvsnitt = Convert.ToString(podd.AvsnittLista.Count());
+                            lvPodcast.Items[i].SubItems[1].Text = antalAvsnitt;
+
+                            Console.WriteLine("Ticker fungerar" + " Nästa uppdatering är " + podd.Namn + " " + podd.NästaUppdatering);
+                        }
+                    }
+                }
             }
         }
     }
