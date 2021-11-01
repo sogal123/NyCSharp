@@ -17,14 +17,14 @@ namespace Model
         public List<Avsnitt> AvsnittLista { get; set; }
         public DateTime NästaUppdatering { get; set;  }
 
-        public Podcast(string namn,  string url, string uppdateringsFrekvens, string kategori, List<Avsnitt> avsnitt) 
+        public Podcast(string namn,  string url, string uppdateringsFrekvens, string kategori, List<Avsnitt> avsnitt, DateTime nästauppdatering) 
         {
             Namn = namn;
             UppdateringsFrekvens = uppdateringsFrekvens;
             Url = url;
             Kategori = kategori;
             AvsnittLista = avsnitt;
-
+            NästaUppdatering = nästauppdatering;
         }
 
         public Podcast()
@@ -33,8 +33,8 @@ namespace Model
 
         public void Uppdatera()
         {
-            double frekvens = Convert.ToDouble(UppdateringsFrekvens);
-            NästaUppdatering = DateTime.Now.AddMilliseconds(frekvens);
+            //double frekvens = Convert.ToDouble(UppdateringsFrekvens);
+            //NästaUppdatering = DateTime.Now.AddMilliseconds(frekvens);
 
         }
         public bool BehöverUppdateras()

@@ -58,6 +58,13 @@ namespace DataAccessLayer.Repository
             }
             SaveChanges();
         }
+
+        public int getIndex(string namn)
+        {
+            
+                return GetAll().FindIndex(podd => podd.Namn.Equals(namn));
+            
+        }
         public void SaveChanges()
         {
             dataManager.SerializePodcast(podcastLista);
