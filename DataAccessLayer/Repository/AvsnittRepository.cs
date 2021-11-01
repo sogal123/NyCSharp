@@ -5,6 +5,7 @@ using Model;
 using DataAccessLayer;
 using System.Xml;
 using System.ServiceModel.Syndication;
+using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
@@ -20,11 +21,11 @@ namespace DataAccessLayer.Repository
             podcastLista = new List<Podcast>();
             avsnittLista = new List<Avsnitt>();
         }
-        public List<Avsnitt> HämtaAllaAvsnitt(string url)
+        public async Task<List<Avsnitt>> HämtaAllaAvsnitt(string url)
         {
             {
                 XmlReader reader = XmlReader.Create(url);
-                SyndicationFeed data = SyndicationFeed.Load(reader);
+                SyndicationFeed data = await Task.Run(() => SyndicationFeed.Load(reader));
 
                 List<Avsnitt> listaAvsnitt = new List<Avsnitt>();
                 foreach (var item in data.Items)

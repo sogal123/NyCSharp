@@ -59,6 +59,7 @@ namespace Window
 
                 podcastController.getAll();
                 fyllFeed();
+                Console.WriteLine("Tillagd podcast" + tbNamn.Text);
             }
             catch (Exception error)
             {
@@ -130,6 +131,7 @@ namespace Window
                     lvPodcast.View = View.Details;
                     lvPodcast.GridLines = true;
                     lvPodcast.Sorting = SortOrder.Descending;
+                    lvPodcast.Refresh();
 
 
 
