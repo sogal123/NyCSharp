@@ -364,13 +364,39 @@ namespace Window
             {
             {
                 
-                if (lbKategori.SelectedItems.Count > 0 )
+
+                if (lbKategori.SelectedItems.Count == 1 )
                 {
-                    string kategoriNamn = lbKategori.SelectedItems.ToString();
-                    valdKategori = lbKategori.SelectedItems[0].Text;
+                    string valdKategori = lbKategori.SelectedItems[0].Text;
                     Console.WriteLine("Hello world!");
                     //Måste fixas
-                    tbNyKategori.Text = kategoriNamn;
+                    tbNyKategori.Text = valdKategori;
+
+                    var poddLista = podcastController.getAll();
+
+                    foreach (Podcast podd in poddLista)
+
+                    {
+                       
+
+                        if (valdKategori.Equals(podd.Kategori)) 
+                        {
+                            lvPodcast.Items.Clear();
+                            string antalAvsnitt = podd.AvsnittLista.Count.ToString();
+                            ListViewItem katLista = new ListViewItem(podd.Namn);
+                            katLista.SubItems.Add(antalAvsnitt);
+                            katLista.SubItems.Add(podd.UppdateringsFrekvens);
+                            katLista.SubItems.Add(podd.Kategori);
+
+                            lvPodcast.Items.Add(katLista);
+
+
+                        }
+                    }
+                    
+                     
+                        
+                    
                 }
             }
         }
