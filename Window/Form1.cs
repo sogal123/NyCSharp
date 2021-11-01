@@ -174,8 +174,8 @@ namespace Window
             try
             {
                 //Validering 
-                //Validator.TommaCbs(" ", cbKategori.SelectedItem); Validator.TommaCbs(" ", cbFrekvens.SelectedItem);
-                //Validator.TommaTextFält(" ", tbUrl.Text); Validator.TommaTextFält(" ", tbNamn.Text);
+                Validator.TommaCbs(" ", cbKategori.SelectedItem); Validator.TommaCbs(" ", cbFrekvens.SelectedItem);
+                Validator.TommaTextFält(" ", tbUrl.Text); Validator.TommaTextFält(" ", tbNamn.Text);
                 var poddLista = podcastController.getAll();
                 Podcast podd = poddLista[valdPoddInt];
                 string url = tbUrl.Text;
@@ -198,14 +198,15 @@ namespace Window
                         podcastController.UpdatePodcast(valdPoddInt, namn, url, frekvens, kategori);
 
                         fyllFeed();
-                        Console.WriteLine("Podcast sparad!");
+                        MessageBox.Show("Podcast sparad!");
                     }
 
                 }
             }
             catch (Exception error)
             {
-                Console.WriteLine(error.Message + "Hittar inte podcast att uppdatera");
+                Felmeddelande(error);
+                
             }
 
 

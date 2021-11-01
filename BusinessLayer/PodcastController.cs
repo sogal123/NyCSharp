@@ -39,6 +39,7 @@ namespace BusinessLayer
             podcastRepository.Delete(podcast);
         }
 
+        //Används inte?
         public string GetPodcastAtIndex(int i)
         {
             var podcastLista = podcastRepository.GetAll();
@@ -47,6 +48,7 @@ namespace BusinessLayer
             return poddnamn;
         }
 
+        //Används inte?
         public string GetPodcastUrlAtIndex(int i)
         {
             var podcastLista = podcastRepository.GetAll();

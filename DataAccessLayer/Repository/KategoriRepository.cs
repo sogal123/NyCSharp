@@ -32,7 +32,7 @@ namespace DataAccessLayer.Repository
                            select kat;
                            kategoriLista = katfraga.ToList();
             SaveChanges();
-            GetAll();
+            GetAll();   
         }
        
         public List<Kategori> GetAll()
