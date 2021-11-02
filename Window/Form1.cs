@@ -57,10 +57,11 @@ namespace Window
                 podcastController.CreatePodcast(tbNamn.Text, tbUrl.Text, cbFrekvens.Text, cbKategori.Text);
 
 
-                podcastController.getAll();
-                fyllFeed();
+               
+                
                 MessageBox.Show(tbNamn.Text + " är tillagd som podcast!");
                 Console.WriteLine("Tillagd podcast" + tbNamn.Text);
+                fyllFeed();
             }
             catch (Exception error)
             {
