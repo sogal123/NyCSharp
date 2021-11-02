@@ -18,9 +18,9 @@ namespace BusinessLayer
             
         }
 
-        public async Task<List<Avsnitt>> HämtaAllaAvsnitt(string url)
+        public  List<Avsnitt> HämtaAllaAvsnitt(string url)
         {
-           return await avsnittRepository.HämtaAllaAvsnitt(url);
+           return  avsnittRepository.HämtaAllaAvsnitt(url);
         }
 
 

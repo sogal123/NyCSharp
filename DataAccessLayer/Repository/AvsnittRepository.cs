@@ -21,11 +21,11 @@ namespace DataAccessLayer.Repository
             podcastLista = new List<Podcast>();
             avsnittLista = new List<Avsnitt>();
         }
-        public async Task<List<Avsnitt>> HämtaAllaAvsnitt(string url)
+        public List<Avsnitt> HämtaAllaAvsnitt(string url)
         {
             {
                 XmlReader reader = XmlReader.Create(url);
-                SyndicationFeed data = await Task.Run(() => SyndicationFeed.Load(reader));
+                SyndicationFeed data =   SyndicationFeed.Load(reader);
 
                 List<Avsnitt> listaAvsnitt = new List<Avsnitt>();
                 foreach (var item in data.Items)

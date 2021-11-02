@@ -9,7 +9,7 @@ namespace DataAccessLayer.Repository
     
     public interface IAvsnittRepository<T> where T : Avsnitt
     {
-        Task<List<T>> HämtaAllaAvsnitt(string url);
+        List<T> HämtaAllaAvsnitt(string url);
         
     }
 }
