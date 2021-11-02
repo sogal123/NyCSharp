@@ -88,26 +88,7 @@ namespace Window
 
         private void Timer_TickEnMinut(object sender, EventArgs e)
         {
-            //Console.WriteLine("Tickermetod körs");
-
-            //Podcast valdPodd = new Podcast();
-
-
-
-            //valdPodd = podd;
-
-            //XmlDocument xmlDocument = new XmlDocument();
-            //xmlDocument.Load(valdPodd.Url);
-
-            //XmlElement xmlElement = xmlDocument.DocumentElement;
-            //XmlNodeList nodes = xmlDocument.SelectNodes("//channel/item");
-
-
-            //if (nodes.Count != valdPodd.AvsnittLista.Count())
-            //{
-
-
-            foreach (var podd in podcastLista)
+             foreach (var podd in podcastLista)
             {
                 if (podd.UppdateringsFrekvens.Equals("1min"))
                 {
@@ -134,35 +115,7 @@ namespace Window
                 }
             }
         }
-            //foreach (var podd in podcastLista)
-            //{
-            //    Podcast valdPodd = new Podcast();
-
-            //    if (podd.UppdateringsFrekvens.Equals("2min"))
-            //    {
-
-            //        valdPodd = podd;
-
-            //        XmlDocument xmlDocument = new XmlDocument();
-            //        xmlDocument.Load(valdPodd.Url);
-
-            //        XmlElement xmlElement = xmlDocument.DocumentElement;
-            //        XmlNodeList nodes = xmlDocument.SelectNodes("//channel/item");
-
-
-            //        if (nodes.Count != valdPodd.AvsnittLista.Count())
-            //        {
-            //            podcastRepository.SaveChanges();
-            //            Console.WriteLine("Podcast med 2 minuters uppdateringsfrekvens har uppdaterats " + DateTime.Now);
-
-            //        }
-
-            //    }
-
-
-            //    //podcastController.poddarMed1minFrekvens();
-            //}
-        
+           
         private void Timer_TickTreMinuter(object sender, EventArgs e)
         {
 
@@ -177,34 +130,7 @@ namespace Window
                 }
             }
         }
-                //foreach (var podd in podcastLista)
-                //{
-                //    Podcast valdPodd = new Podcast();
-
-                //    if (podd.UppdateringsFrekvens.Equals("3min"))
-                //    {
-
-                //        valdPodd = podd;
-
-                //        XmlDocument xmlDocument = new XmlDocument();
-                //        xmlDocument.Load(valdPodd.Url);
-
-                //        XmlElement xmlElement = xmlDocument.DocumentElement;
-                //        XmlNodeList nodes = xmlDocument.SelectNodes("//channel/item");
-
-                //        if (nodes.Count != valdPodd.AvsnittLista.Count())
-                //        {
-                //            podcastRepository.SaveChanges();
-                //            Console.WriteLine("Podcast med 3 minuters uppdateringsfrekvens har uppdaterats " + DateTime.Now);
-
-                //        }
-
-                //    }
-
-
-                //    //podcastController.poddarMed1minFrekvens();
-                //}
-
+               
          
 
         private void btnNyPodcast_Click(object sender, EventArgs e)
@@ -214,6 +140,7 @@ namespace Window
                 enMinutTimer.Stop();
                 tvåMinuterTimer.Stop();
                 treMinuterTimer.Stop();
+
                 //Validator.FörKortInput(tbNamn.Text);
                 //Validator.TommaTextFält(tbUrl.Text);
                 Validator.TommaCbs(" ", cbKategori.SelectedItem); Validator.TommaCbs(" ", cbFrekvens.SelectedItem);
@@ -227,6 +154,9 @@ namespace Window
                 MessageBox.Show(tbNamn.Text + " är tillagd som podcast!");
                 Console.WriteLine("Tillagd podcast " + tbNamn.Text);
                 fyllFeed();
+
+
+                //StartaTimers();
             }
             catch (Exception error)
             {
@@ -278,10 +208,11 @@ namespace Window
             //lvPodcast.Clear();
             var poddLista = podcastController.getAll();
 
-
+            
             lvPodcast.Items.Clear();
             foreach (var podd in poddLista)
             {
+                
 
 
                 if (podd != null)
@@ -300,7 +231,7 @@ namespace Window
                     lvPodcast.GridLines = true;
                     lvPodcast.Sorting = SortOrder.Descending;
                     lvPodcast.Refresh();
-
+                    
 
 
                 }
@@ -339,31 +270,36 @@ namespace Window
         private void btnSparaPodcast_Click(object sender, EventArgs e)
         {
 
-            try
+            try 
             {
+                //StoppaTimers();
                 enMinutTimer.Stop();
-                tvåMinuterTimer.Stop();
-                treMinuterTimer.Stop();
+                enMinutTimer.Stop();
+                enMinutTimer.Stop();
 
                 Validator.TommaCbs(" ", cbKategori.SelectedItem); Validator.TommaCbs(" ", cbFrekvens.SelectedItem);
                 Validator.TommaTextFält(" ", tbUrl.Text); Validator.TommaTextFält(" ", tbNamn.Text);
-
-                Podcast podd = podcastLista[valdPoddInt];
+                
+                //Podcast podd = podcastLista[valdPoddInt];
                 string namn = tbNamn.Text;
                 string url = tbUrl.Text;
                 string frekvens = cbFrekvens.Text;
                 string kategori = cbKategori.Text;
 
-                {
+                //{
 
-                    if (podd.Url.Equals(url))
-                    {
+                //    //if (podd.Url.Equals(url))
+                //    {
 
-                        podcastController.UpdatePodcast(valdPoddInt, namn, url, frekvens, kategori);
+                        podcastController.UpdatePodcast(namn, url, frekvens, kategori);
                         MessageBox.Show("Podcast sparad!");
                         fyllFeed();
-                    }
-                }
+
+                enMinutTimer.Start();
+                tvåMinuterTimer.Start();
+                treMinuterTimer.Start();
+                //    }
+                //}
             }
             catch (Exception error)
             {
@@ -399,6 +335,9 @@ namespace Window
         {
 
             enMinutTimer.Stop();
+            tvåMinuterTimer.Stop();
+            treMinuterTimer.Stop();
+
             lvPodcast.View = View.Details;
             lvPodcast.GridLines = true;
             lvPodcast.FullRowSelect = true;
@@ -420,6 +359,10 @@ namespace Window
                         {
                             lbAvsnittsLista.Items.Add(avsnitt.Namn);
                             fyllTB();
+
+                            enMinutTimer.Start();
+                            tvåMinuterTimer.Start();
+                            treMinuterTimer.Start();
                         }
                     }
                 }
@@ -430,6 +373,9 @@ namespace Window
         {
             if (lbAvsnittsLista.SelectedItems.Count == 1)
             {
+                enMinutTimer.Stop();
+                tvåMinuterTimer.Stop();
+                treMinuterTimer.Stop();
                 var ettAvsnitt = lbAvsnittsLista.SelectedItems[0];
 
                 foreach (var podd in podcastController.getAll())
@@ -440,7 +386,10 @@ namespace Window
                         if (avsnitt.Namn.Equals(ettAvsnitt))
                         {
                             tbBeskrivning.Text = avsnitt.AvsnittsBeskrivning;
-
+                            
+                            enMinutTimer.Start();
+                            tvåMinuterTimer.Start();
+                            treMinuterTimer.Start();
                         }
                     }
 
@@ -469,11 +418,21 @@ namespace Window
 
                 Validator.TommaTextFält(" ", tbNyKategori.Text);
 
+
+                enMinutTimer.Start();
+                tvåMinuterTimer.Start();
+                treMinuterTimer.Start();
+
                 //string nyttKategoriNamn = tbNyKategori.ToString();
                 //Kategori kategori = 
                 //kategoriController.UpdateKategori(
                 //MessageBox.Show("Podcast sparad!");
                 //fyllFeed();
+
+
+
+
+
             }
             catch (Exception error)
             {
@@ -500,6 +459,10 @@ namespace Window
 
                 kategoriController.GetAll();
                 fyllKategori();
+
+                enMinutTimer.Start();
+                tvåMinuterTimer.Start();
+                treMinuterTimer.Start();
             }
             catch (Exception error)
             {
@@ -515,6 +478,19 @@ namespace Window
 
         }
 
+        private void StartaTimers()
+        {
+            enMinutTimer.Start();
+            tvåMinuterTimer.Start();
+            treMinuterTimer.Start();
+        } 
+
+        private void StoppaTimers()
+        {
+            enMinutTimer.Stop();
+            tvåMinuterTimer.Stop();
+            treMinuterTimer.Stop();
+        }
         private void btnTaBortPodcast_Click(object sender, EventArgs e)
         {
             if (lvPodcast.SelectedItems.Count >= 0)
@@ -532,6 +508,10 @@ namespace Window
                         podcastController.DeletePodcast(valdPodd);
                         Console.WriteLine(i + "Podcasten är borttagen");
                         fyllFeed();
+
+                        enMinutTimer.Start();
+                        tvåMinuterTimer.Start();
+                        treMinuterTimer.Start();
                     }
                 }
                 else
@@ -562,9 +542,20 @@ namespace Window
 
                             {
                                 kategoriController.DeleteKategori(valdKategori);
-                                Console.WriteLine(i + "Kategorin är borttagen");
-                                Console.WriteLine(valdKategori);
+                                podcastController.DeleteAllPodcastsByCategory(valdKategori);
+                                MessageBox.Show("Kategorin är borttagen");
                                 fyllKategori();
+                                fyllFeed();
+                                lbAvsnittsLista.Items.Clear();
+                                tbBeskrivning.Clear();
+                                tbNyKategori.Clear();
+                                tbNamn.Clear();
+                                tbUrl.Clear();
+                                cbKategori.ResetText();
+
+                                enMinutTimer.Start();
+                                tvåMinuterTimer.Start();
+                                treMinuterTimer.Start();
                             }
                         }
                     }
@@ -591,6 +582,11 @@ namespace Window
         {
                 if (lbKategori.SelectedItems.Count > 0)
                 {
+
+                enMinutTimer.Stop();
+                tvåMinuterTimer.Stop();
+                treMinuterTimer.Stop();
+
                 valdKategori = lbKategori.SelectedItems[0].Text;
 
                 tbNyKategori.Text = valdKategori;
@@ -612,7 +608,9 @@ namespace Window
 
                         lvPodcast.Items.Add(katLista);
 
-                        Console.WriteLine(katLista);
+                        enMinutTimer.Start();
+                        tvåMinuterTimer.Start();
+                        treMinuterTimer.Start();
 
                     }
                 }

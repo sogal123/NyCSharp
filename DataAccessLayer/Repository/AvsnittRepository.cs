@@ -24,6 +24,7 @@ namespace DataAccessLayer.Repository
         public async Task <List<Avsnitt>> HämtaAllaAvsnitt(string url)
         {
             {
+
                 XmlReader reader = XmlReader.Create(url);
                 SyndicationFeed data = await Task.Run(() => SyndicationFeed.Load(reader));
                 

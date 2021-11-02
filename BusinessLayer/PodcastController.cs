@@ -60,18 +60,27 @@ namespace BusinessLayer
 
         }
 
-        public  void UpdatePodcast(int valdPodcast, string namn, string url, string uppdateringsFrekvens, string kategori)
+        public  void UpdatePodcast( string namn, string url, string uppdateringsFrekvens, string kategori)
         {
             try
             {
-                Podcast podd = podcastList[valdPodcast];
+                //Podcast podd = podcastList[valdPodcast];
+
+                //foreach(var prop in typeof(Podcast).GetProperties)
+                //{
+
+                //}
+                
+
+                Podcast podd = podcastList.Find(p => p.Url == url);
+
                 podd.Namn = namn;
                 podd.Url = url;
                 podd.UppdateringsFrekvens = uppdateringsFrekvens;
                 podd.Kategori = kategori;
+                Console.WriteLine(podd.Namn + " är sparad!");
 
-
-                podcastRepository.Update(valdPodcast, podd);
+                podcastRepository.Update(url, podd);
 
                 
             }
@@ -86,6 +95,12 @@ namespace BusinessLayer
         //    return podcastRepository.UppdateringsFrekvens60Sek();
         //}
 
+
+        public void DeleteAllPodcastsByCategory(string podcast)
+        {
+            podcastRepository.DeleteAllPodcastsByCategory(podcast);
         }
+
+    }
     }
 

@@ -8,7 +8,7 @@ namespace DataAccessLayer.Repository
     {
         void Create(T entity);
         void Delete(string entity);
-        void Update(int index, T entity);
+        void Update(string namn, T entity);
         void SaveChanges();
         List<T> GetAll();
 
