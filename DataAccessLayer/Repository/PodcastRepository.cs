@@ -23,6 +23,9 @@ namespace DataAccessLayer.Repository
         {
             podcastLista.Add(podcast);
             SaveChanges();
+
+            
+            
         }
 
         public void Delete(string podcast)
@@ -55,14 +58,16 @@ namespace DataAccessLayer.Repository
             if (i >= 0)
             {
                 podcastLista[i] = podcast;
-
+                SaveChanges();
             }
-            SaveChanges();
+            
+            Console.WriteLine(podcast.Namn + " Är sparad" + podcast.Url + " " + podcast.UppdateringsFrekvens);
 
         }
         public void SaveChanges()
         {
             dataManager.SerializePodcast(podcastLista);
+            
         }
     }
 }

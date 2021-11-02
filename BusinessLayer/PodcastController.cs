@@ -64,8 +64,6 @@ namespace BusinessLayer
         {
             try
             {
-                //var podcastLista = podcastRepository.GetAll();
-               
                 Podcast podd = podcastList[valdPodcast];
                 podd.Namn = namn;
                 podd.Url = url;
@@ -74,6 +72,7 @@ namespace BusinessLayer
 
 
                 podcastRepository.Update(valdPodcast, podd);
+
                 
             }
             catch (Exception error)
