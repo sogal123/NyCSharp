@@ -67,10 +67,10 @@ namespace BusinessLayer
                 //var podcastLista = podcastRepository.GetAll();
                
                 Podcast podd = podcastList[valdPodcast];
-                namn = podd.Namn;
-                url = podd.Url;
-                uppdateringsFrekvens = podd.UppdateringsFrekvens;
-                kategori = podd.Kategori;
+                podd.Namn = namn;
+                podd.Url = url;
+                podd.UppdateringsFrekvens = uppdateringsFrekvens;
+                podd.Kategori = kategori;
 
 
                 podcastRepository.Update(valdPodcast, podd);

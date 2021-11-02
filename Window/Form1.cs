@@ -173,47 +173,34 @@ namespace Window
         private void btnSparaPodcast_Click(object sender, EventArgs e)
         {
 
-
-
             try
             {
-                //Validering 
+
                 Validator.TommaCbs(" ", cbKategori.SelectedItem); Validator.TommaCbs(" ", cbFrekvens.SelectedItem);
                 Validator.TommaTextFält(" ", tbUrl.Text); Validator.TommaTextFält(" ", tbNamn.Text);
-                var poddLista = podcastController.getAll();
-                Podcast podd = poddLista[valdPoddInt];
+
+                Podcast podd = podcastLista[valdPoddInt];
                 string url = tbUrl.Text;
                 string namn = tbNamn.Text;
                 string frekvens = cbFrekvens.Text;
                 string kategori = cbKategori.Text;
-                //int i = lvPodcast.SelectedItems[0];
 
-                //for (int i = lvPodcast.SelectedItems.Count - 1; i >= 0; i--)
-                //{
-                //    podcastController.DeletePodcast(valdPodd);
-                //    Console.WriteLine(i + "Podcasten är borttagen");
-                //    fyllFeed();
-                //}
-                //foreach (Podcast p in podcastLista)
                 {
-                    if (podd.Namn.Equals(namn))
+
+                    if (podd.Url.Equals(url))
                     {
 
                         podcastController.UpdatePodcast(valdPoddInt, namn, url, frekvens, kategori);
-
-                        fyllFeed();
                         MessageBox.Show("Podcast sparad!");
+                        fyllFeed();
                     }
-
                 }
             }
             catch (Exception error)
             {
                 Felmeddelande(error);
-                
+
             }
-
-
 
         }
 
@@ -305,7 +292,14 @@ namespace Window
         {
             try
             {
+
                 Validator.TommaTextFält(" ", tbNyKategori.Text);
+
+                //string nyttKategoriNamn = tbNyKategori.ToString();
+                //Kategori kategori = 
+                //kategoriController.UpdateKategori(
+                //MessageBox.Show("Podcast sparad!");
+                //fyllFeed();
             }
             catch (Exception error)
             {
