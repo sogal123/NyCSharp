@@ -53,22 +53,24 @@ namespace DataAccessLayer.Repository
             return podcastLista;
         }
 
-        public void Update(string url, Podcast podcast)
+        public void Update(int i, Podcast podcast)
         {
-            if (podcast.Url.Equals(url))
+            if (i >= 0)
+                /*(podcast.Url.Equals(url))*/
             {
-                //podcastLista[i] = podcast;
-                SaveChanges();
-               
+                podcastLista[i] = podcast;
+                
+
+
             }
+            SaveChanges();
             
-            Console.WriteLine(podcast.Namn + " Är sparad" + podcast.Url + " " + podcast.UppdateringsFrekvens);
 
         }
         public void SaveChanges()
         {
             dataManager.SerializePodcast(podcastLista);
-            Console.WriteLine(" sparades i repository!");
+            
         }
 
         public void DeleteAllPodcastsByCategory(string podcast)

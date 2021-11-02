@@ -60,27 +60,30 @@ namespace BusinessLayer
 
         }
 
-        public  void UpdatePodcast( string namn, string url, string uppdateringsFrekvens, string kategori)
+        public void UpdatePodcast(int valdPodd, string namn, string url, string uppdateringsFrekvens, string kategori)
         {
             try
             {
-                //Podcast podd = podcastList[valdPodcast];
+              
+                //List<Avsnitt> avsnittLista = await avsnittRepository.HämtaAllaAvsnitt(url);
+                var podcastLista = podcastRepository.GetAll();
+                Podcast podd = podcastLista[valdPodd];
 
-                //foreach(var prop in typeof(Podcast).GetProperties)
+                //foreach (var prop in typeof(Podcast).GetProperties)
                 //{
 
                 //}
-                
 
-                Podcast podd = podcastList.Find(p => p.Url == url);
+
+                //Podcast podd = podcastList.Find(p => p.Url == url);
 
                 podd.Namn = namn;
                 podd.Url = url;
                 podd.UppdateringsFrekvens = uppdateringsFrekvens;
                 podd.Kategori = kategori;
                 Console.WriteLine(podd.Namn + " är sparad!");
-
-                podcastRepository.Update(url, podd);
+                
+                podcastRepository.Update(valdPodd, podd);
 
                 
             }

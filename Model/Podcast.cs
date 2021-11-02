@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace Model
 {
     [Serializable, XmlRoot("Podcasts")]
-    public class Podcast
+    public class Podcast : Feed
     {
 
 
@@ -15,7 +15,7 @@ namespace Model
         public string UppdateringsFrekvens { get; set; }
         public string Kategori { get; set; }
         public List<Avsnitt> AvsnittLista { get; set; }
-        //public DateTime NästaUppdatering { get; set;  }
+        
 
         public Podcast(string namn,  string url, string uppdateringsFrekvens, string kategori, List<Avsnitt> avsnitt) 
         {
@@ -29,6 +29,11 @@ namespace Model
 
         public Podcast()
         {
+        }
+
+        public override string FeedTyp()
+        {
+            return "Detta objekt är en Podcast";
         }
 
         //public void Uppdatera()

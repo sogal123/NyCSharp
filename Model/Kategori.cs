@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Model
 {
-    public class Kategori
+    public class Kategori : Feed
     {
 
         public string KategoriNamn { get; set; }
@@ -16,6 +16,12 @@ namespace Model
 
         public Kategori()
         {
+        }
+
+        public override string FeedTyp()
+        {
+            return "Detta objekt är en Kategori";
+        
         }
     }
 }

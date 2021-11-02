@@ -27,7 +27,7 @@ namespace Window
         KategoriController kategoriController;
         string valdPodd;
         string valdKategori;
-        int valdPoddInt = 1;
+        private int valdPoddInt = 0;
 
         public System.Timers.Timer enMinutTimer { get; set; }
         public System.Timers.Timer tvåMinuterTimer { get; set; }
@@ -124,7 +124,7 @@ namespace Window
                 if (podd.UppdateringsFrekvens.Equals("3min"))
                 {
 
-                    podcastRepository.SaveChanges();
+                    
                     Console.WriteLine("Podcast med 3 minuters uppdateringsfrekvens har uppdaterats " + DateTime.Now + podd.Namn);
 
                 }
@@ -229,7 +229,6 @@ namespace Window
                     lvPodcast.FullRowSelect = true;
                     lvPodcast.View = View.Details;
                     lvPodcast.GridLines = true;
-                    lvPodcast.Sorting = SortOrder.Descending;
                     lvPodcast.Refresh();
                     
 
@@ -267,33 +266,35 @@ namespace Window
 
             cbKategori.SelectedIndex = -1;
         }
-        private void btnSparaPodcast_Click(object sender, EventArgs e)
+        private async void btnSparaPodcast_Click(object sender, EventArgs e)
         {
 
-            try 
+            try
             {
-                //StoppaTimers();
+                
                 enMinutTimer.Stop();
                 enMinutTimer.Stop();
                 enMinutTimer.Stop();
 
                 Validator.TommaCbs(" ", cbKategori.SelectedItem); Validator.TommaCbs(" ", cbFrekvens.SelectedItem);
                 Validator.TommaTextFält(" ", tbUrl.Text); Validator.TommaTextFält(" ", tbNamn.Text);
+
+                var selectedItem = lvPodcast.SelectedItems[0];
+                int index = selectedItem.Index;
+
                 
-                //Podcast podd = podcastLista[valdPoddInt];
                 string namn = tbNamn.Text;
                 string url = tbUrl.Text;
-                string frekvens = cbFrekvens.Text;
+                string uppdateringsFrekvens = cbFrekvens.Text;
                 string kategori = cbKategori.Text;
+                //var avsnittslista = await avsnittController.HämtaAllaAvsnitt(url);
+                //string antalAvsnitt = avsnittslista.Count().ToString();
+               
 
-                //{
-
-                //    //if (podd.Url.Equals(url))
-                //    {
-
-                        podcastController.UpdatePodcast(namn, url, frekvens, kategori);
+                podcastController.UpdatePodcast(index, namn, url, uppdateringsFrekvens, kategori);
                         MessageBox.Show("Podcast sparad!");
-                        fyllFeed();
+                        
+                        fyllFeed(); MessageBox.Show(valdPoddInt +  "-indexet för podcasten" + namn+  "är sparad!");
 
                 enMinutTimer.Start();
                 tvåMinuterTimer.Start();
@@ -341,7 +342,7 @@ namespace Window
             lvPodcast.View = View.Details;
             lvPodcast.GridLines = true;
             lvPodcast.FullRowSelect = true;
-            lvPodcast.Sorting = SortOrder.Descending;
+            
 
             lbAvsnittsLista.Items.Clear();
             if (lvPodcast.SelectedItems.Count == 1)
