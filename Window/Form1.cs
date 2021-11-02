@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 using System.Xml;
 
 
@@ -30,6 +31,8 @@ namespace Window
         string valdKategori;
         int valdPoddInt = 1;
 
+        public System.Timers.Timer enMinutTimer { get; set; }
+
         public Form1()
         {
             InitializeComponent();
@@ -39,9 +42,41 @@ namespace Window
             kategoriController = new KategoriController();
             podcastLista = podcastController.getAll();
 
+            enMinutTimer = new System.Timers.Timer();
+            //timer.Interval = 1000;
+            //Timer_Tick();
+            //timer.Tick += 
+            enMinutTimer.Start();
+
+            
             fyllFeed();
             fyllCb();
             fyllKategori();
+        }
+
+
+        private void Timer()
+        {
+            {
+
+              enMinutTimer = new System.Timers.Timer(60000);
+              enMinutTimer.Elapsed += Timer_TickEnMinut;
+              enMinutTimer.AutoReset = true;
+              enMinutTimer.Enabled = true;
+
+
+
+                //timer.Enabled = true;
+                //timer.AutoReset = true;
+                //timer.Elapsed += Timer_Tick;
+                //timer.Start();
+            }
+        }
+
+        private void Timer_TickEnMinut(object sender, EventArgs e)
+        {
+           
+
         }
 
 

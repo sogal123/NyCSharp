@@ -13,10 +13,10 @@ namespace DataAccessLayer.Repository
         List<Podcast> podcastLista;
         public PodcastRepository()
         {
-            podcastLista = new List<Podcast>(); 
+            podcastLista = new List<Podcast>();
             dataManager = new DataManager();
             podcastLista = GetAll();
-            
+
         }
 
         public void Create(Podcast podcast)
@@ -24,16 +24,16 @@ namespace DataAccessLayer.Repository
             podcastLista.Add(podcast);
             SaveChanges();
         }
-        
+
         public void Delete(string podcast)
         {
             var podquery = from pod in podcastLista
                            where pod.Namn != podcast
                            select pod;
-                           podcastLista = podquery.ToList();
+            podcastLista = podquery.ToList();
 
-           SaveChanges();
-            
+            SaveChanges();
+
         }
 
         public List<Podcast> GetAll()
@@ -47,7 +47,7 @@ namespace DataAccessLayer.Repository
             {
                 Console.WriteLine(error.Message + ". Ingen lista att returnera");
             }
-            return podcastLista; 
+            return podcastLista;
         }
 
         public void Update(int i, Podcast podcast)
@@ -55,16 +55,41 @@ namespace DataAccessLayer.Repository
             if (i >= 0)
             {
                 podcastLista[i] = podcast;
-                
+
             }
             SaveChanges();
-            
+
         }
         public void SaveChanges()
         {
             dataManager.SerializePodcast(podcastLista);
-            
+
         }
+
+        public List<Podcast> UppdateringsFrekvens60Sek()
+        {
+
+            var poddar60sek = new List<Podcast>();
+            try
+            {
+                foreach (Podcast podd in podcastLista)
+                {
+                    if (podd.UppdateringsFrekvens.Equals("1min"))
+                    {
+                        poddar60sek.Add(podd);
+
+                                            }
+                }
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("Hittar inga podcast inom det angivna intervallet. " + error.Message);
+            }
+
+            return poddar60sek;
+        }
+            
+        
 
        
     }

@@ -81,7 +81,12 @@ namespace BusinessLayer
                 Console.WriteLine("Hittar inte podd" + error.Message);
             }
         }
+
+        public List<Podcast> poddarMed1minFrekvens()
+        {
+            return podcastRepository.UppdateringsFrekvens60Sek();
         }
 
+        }
     }
 
