@@ -15,19 +15,19 @@ namespace DataAccessLayer.Repository
         public List<Podcast> podcastLista;
         public DataManager dataManager;
 
-        
+
         public AvsnittRepository()
         {
             podcastLista = new List<Podcast>();
             avsnittLista = new List<Avsnitt>();
         }
-        public async Task <List<Avsnitt>> HämtaAllaAvsnitt(string url)
+        public async Task<List<Avsnitt>> HämtaAllaAvsnitt(string url)
         {
             {
 
                 XmlReader reader = XmlReader.Create(url);
                 SyndicationFeed data = await Task.Run(() => SyndicationFeed.Load(reader));
-                
+
                 List<Avsnitt> listaAvsnitt = new List<Avsnitt>();
                 foreach (var item in data.Items)
                 {
@@ -38,8 +38,7 @@ namespace DataAccessLayer.Repository
                 }
                 return listaAvsnitt;
             }
-           
+
         }
     }
 }
-   

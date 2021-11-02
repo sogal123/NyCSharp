@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    
+
     public interface IAvsnittRepository<T> where T : Avsnitt
     {
-        Task <List<T>> HämtaAllaAvsnitt(string url);
-        
+        Task<List<T>> HämtaAllaAvsnitt(string url);
+
     }
 }

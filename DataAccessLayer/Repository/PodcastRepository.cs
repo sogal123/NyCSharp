@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Model;
-using DataAccessLayer;
 using System.Linq;
 
 namespace DataAccessLayer.Repository
@@ -53,18 +51,18 @@ namespace DataAccessLayer.Repository
         public void Update(int i, Podcast podcast)
         {
             if (i >= 0)
-                
+
             {
                 podcastLista[i] = podcast;
-             }
+            }
             SaveChanges();
-            
+
 
         }
         public void SaveChanges()
         {
             dataManager.SerializePodcast(podcastLista);
-            
+
         }
 
         public void DeleteAllPodcastsByCategory(string podcast)
@@ -75,7 +73,7 @@ namespace DataAccessLayer.Repository
             podcastLista = podquery.ToList();
 
             SaveChanges();
-            
+
         }
     }
 }

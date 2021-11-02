@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DataAccessLayer
 {
     public class SerializerException : Exception
     {
         private string fileName;
-        public string FileName 
-        { 
+        public string FileName
+        {
             get
             {
                 return fileName;

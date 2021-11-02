@@ -15,9 +15,9 @@ namespace Model
         public string UppdateringsFrekvens { get; set; }
         public string Kategori { get; set; }
         public List<Avsnitt> AvsnittLista { get; set; }
-        
 
-        public Podcast(string namn,  string url, string uppdateringsFrekvens, string kategori, List<Avsnitt> avsnitt) 
+
+        public Podcast(string namn, string url, string uppdateringsFrekvens, string kategori, List<Avsnitt> avsnitt)
         {
             Namn = namn;
             UppdateringsFrekvens = uppdateringsFrekvens;
@@ -36,18 +36,6 @@ namespace Model
             return "Detta objekt är en Podcast";
         }
 
-        //public void Uppdatera()
-        //{
-        //    double frekvens = Convert.ToDouble(UppdateringsFrekvens);
-        //    NästaUppdatering = DateTime.Now.AddMilliseconds(frekvens);
-
-        //}
-        //public bool BehöverUppdateras()
-        //{
-        //    return NästaUppdatering <= DateTime.Now;
-        //}
-
-        
     }
 }
 

@@ -21,7 +21,7 @@ namespace Model
         public override string FeedTyp()
         {
             return "Detta objekt är en Kategori";
-        
+
         }
     }
 }

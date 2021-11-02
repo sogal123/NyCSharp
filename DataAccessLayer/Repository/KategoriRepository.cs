@@ -1,8 +1,6 @@
 ﻿using System;
 using Model;
 using System.Collections.Generic;
-using System.Text;
-using DataAccessLayer;
 using System.Linq;
 
 namespace DataAccessLayer.Repository
@@ -13,10 +11,10 @@ namespace DataAccessLayer.Repository
         List<Kategori> kategoriLista;
         public KategoriRepository()
         {
-            kategoriLista = new List<Kategori>(); 
+            kategoriLista = new List<Kategori>();
             dataManager = new DataManager();
             kategoriLista = GetAll();
-            
+
         }
 
         public void Create(Kategori kategori)
@@ -30,11 +28,11 @@ namespace DataAccessLayer.Repository
             var katfraga = from kat in kategoriLista
                            where kat.KategoriNamn != kategori
                            select kat;
-                           kategoriLista = katfraga.ToList();
+            kategoriLista = katfraga.ToList();
             SaveChanges();
-            GetAll();   
+            GetAll();
         }
-       
+
         public List<Kategori> GetAll()
         {
             List<Kategori> podcastLista = new List<Kategori>();
@@ -62,6 +60,6 @@ namespace DataAccessLayer.Repository
             dataManager.SerializeKategori(kategoriLista);
         }
 
-        
+
     }
 }

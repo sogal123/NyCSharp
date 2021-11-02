@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 using Model;
-using DataAccessLayer;
 using System.ServiceModel.Syndication;
 
 namespace DataAccessLayer
@@ -24,7 +22,7 @@ namespace DataAccessLayer
 
                 {
                     xmlSerializer.Serialize(fileStreamOut, items);
-                    
+
                 }
             }
             catch (Exception)
@@ -95,37 +93,16 @@ namespace DataAccessLayer
 
         public List<SyndicationItem> FeedLäsare(string url)
         {
+            List<SyndicationItem> data = new List<SyndicationItem>();
+            XmlReader reader = XmlReader.Create(url);
+            SyndicationFeed feed = SyndicationFeed.Load(reader);
+            reader.Close();
 
 
-            //XmlDocument doc = new XmlDocument();
-            //doc.Load(url);
-
-            //XmlElement root = doc.DocumentElement;
-            //XmlNodeList nodes = root.SelectNodes("//channel/item");
-
-            //foreach (XmlNode node in nodes)
-            //{
-            //    string titel = node["title"].InnerText;
-            //    string beskrivning = node["description"].InnerText;
-            //    data.Add(titel);
-            //    data.Add(beskrivning);
-            //}
-
-            //XmlReaderSettings settings = new XmlReaderSettings();
-            //settings.IgnoreWhitespace = true;
-            //settings.IgnoreComments = true;
-                List<SyndicationItem> data = new List<SyndicationItem>();
-                XmlReader reader = XmlReader.Create(url);
-                SyndicationFeed feed = SyndicationFeed.Load(reader);
-                reader.Close();
-
-            //data.Add(feed.Title.Text);
-            //data.Add(feed.Description.Text);
             foreach (SyndicationItem item in feed.Items)
             {
                 data.Add(item);
-                //data.Add(item.Title.Text);
-                //data.Add(item.Summary.Text);
+
             }
 
             return data;

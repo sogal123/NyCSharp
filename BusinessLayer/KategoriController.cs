@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using DataAccessLayer.Repository;
 using Model;
 
@@ -16,29 +14,29 @@ namespace BusinessLayer
             kategoriRepository = new KategoriRepository();
             kategoriLista = kategoriRepository.GetAll();
         }
-       
+
         public List<Kategori> GetAll()
         {
             return kategoriRepository.GetAll();
         }
-        
-    
-    public void CreateKategori(Kategori kategori)
+
+
+        public void CreateKategori(Kategori kategori)
         {
             kategoriRepository.Create(kategori);
         }
 
-    public void DeleteKategori(string kategori)
+        public void DeleteKategori(string kategori)
         {
             kategoriRepository.Delete(kategori);
         }
 
 
-    public void UpdateKategori(int index, Kategori kategori)
+        public void UpdateKategori(int index, Kategori kategori)
         {
             kategoriRepository.Update(index, kategori);
         }
-    
-        
+
+
     }
 }

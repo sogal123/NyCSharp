@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataAccessLayer
+﻿namespace DataAccessLayer
 {
     public class Validator
     {
@@ -16,26 +12,11 @@ namespace DataAccessLayer
 
         public static void TommaCbs(string cbNamn, object cbVärde)
         {
-            
+
             if (cbVärde == null)
             {
-                throw new ValidatorException(cbNamn,   " Vänligen fyll i samtliga rullgardinsmenyer");
+                throw new ValidatorException(cbNamn, " Vänligen fyll i samtliga rullgardinsmenyer");
             }
         }
-        //public static bool FörKortInput(string tbNamn, string tbVärde)
-        //{
-        //    bool inputBool = false;
-        //        if (input.Length)
-        //        return input.Length > 3;
-
-        //        throw new ValidatorException(cbNamn, " måste fyllas i.");
-
-        //}
-
-        //public void Dubblett(string )
-        //{
-
-        //}
-
     }
 }
