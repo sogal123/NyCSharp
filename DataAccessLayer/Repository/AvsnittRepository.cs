@@ -15,7 +15,7 @@ namespace DataAccessLayer.Repository
         public List<Podcast> podcastLista;
         public DataManager dataManager;
 
-        //hej
+        
         public AvsnittRepository()
         {
             podcastLista = new List<Podcast>();
@@ -38,54 +38,8 @@ namespace DataAccessLayer.Repository
                 }
                 return listaAvsnitt;
             }
-            //try
-            //{
-            //        podcastLista = dataManager.DeserializePodcast();
-            //        Podcast podd = podcastLista(url);
-            //        avsnittLista = podd.AvsnittLista;
-            //}
-            //catch (Exception error)
-            //{
-            //    Console.WriteLine(error.Message + " Kan inte hitta vald podcasts avsnittslista");
-            //}
-            //return avsnittLista;
+           
         }
     }
 }
-        //}
-
-        //public List<Avsnitt> HämtaAllaAvsnitt(string url)
-        //{
-            
-        //    try {
-        //        //Podcast podd = new Podcast();
-
-        //        podcastLista = dataManager.DeserializePodcast();
-        //        Podcast podd = podcastLista[url]:
-        //            if ( url == podd.Url) {
-        //        }
-        //        podd.Add(avsnitt);
-
-        //            }
-        //    catch ()
-        //    {
-
-        //    }
-        //    return 
-           
-        //}
-    
-
-
-//public List<Podcast> GetAll()
-//{
-//    List<Podcast> podcastLista = new List<Podcast>();
-//    try
-//    {
-//        podcastLista = dataManager.DeserializePodcast();
-//    }
-//    catch (SerializerException error)
-//    {
-//        Console.WriteLine(error.Message + ". Ingen lista att returnera");
-//    }
-//    return podcastLista; 
+   

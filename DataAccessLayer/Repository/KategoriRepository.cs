@@ -62,9 +62,6 @@ namespace DataAccessLayer.Repository
             dataManager.SerializeKategori(kategoriLista);
         }
 
-        public void Update(string namn, Kategori entity)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

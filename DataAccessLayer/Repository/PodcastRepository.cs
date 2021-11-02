@@ -23,9 +23,6 @@ namespace DataAccessLayer.Repository
         {
             podcastLista.Add(podcast);
             SaveChanges();
-
-            
-            
         }
 
         public void Delete(string podcast)
@@ -56,13 +53,10 @@ namespace DataAccessLayer.Repository
         public void Update(int i, Podcast podcast)
         {
             if (i >= 0)
-                /*(podcast.Url.Equals(url))*/
+                
             {
                 podcastLista[i] = podcast;
-                
-
-
-            }
+             }
             SaveChanges();
             
 
