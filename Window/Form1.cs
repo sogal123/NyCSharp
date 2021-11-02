@@ -349,7 +349,7 @@ namespace Window
                 treMinuterTimer.Stop();
 
                 Validator.TommaTextFält(" ", tbNyKategori.Text);
-
+                
 
                 enMinutTimer.Start();
                 tvåMinuterTimer.Start();
@@ -418,6 +418,11 @@ namespace Window
                         podcastController.DeletePodcast(valdPodd);
                         Console.WriteLine(i + "Podcasten är borttagen");
                         fyllFeed();
+                        tbNamn.Clear();
+                        tbUrl.Clear();
+                        cbKategori.ResetText();
+                        lbAvsnittsLista.Items.Clear();
+                        tbBeskrivning.Clear();
 
                         enMinutTimer.Start();
                         tvåMinuterTimer.Start();
