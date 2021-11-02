@@ -4,7 +4,7 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
+using System.Linq;
 
 namespace Window
 {
@@ -444,7 +444,7 @@ namespace Window
                 {
                     Validator.TommaTextFält(" ", tbNyKategori.Text);
 
-                    var confirmation = MessageBox.Show("Are you sure you want to delete the category " + "?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    var confirmation = MessageBox.Show("Är du säker att du vill radera kategorin  " + tbNyKategori.Text + "?" + " Du kommer även att radera tillhörande podcasts!", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                     if (confirmation == DialogResult.OK)
                     {
                         for (int i = lbKategori.SelectedItems.Count - 1; i >= 0; i--)
@@ -494,28 +494,20 @@ namespace Window
 
                 var poddLista = podcastController.getAll();
                 lvPodcast.Items.Clear();
-
-                foreach (Podcast podd in poddLista)
-
+                foreach (var (podd, antalAvsnitt, katLista) in from Podcast podd in poddLista
+                                                               where podd.Kategori.Equals(valdKategori) && podd != null
+                                                               let antalAvsnitt = podd.AvsnittLista.Count.ToString()
+                                                               let katLista = new ListViewItem(podd.Namn)
+                                                               select (podd, antalAvsnitt, katLista))
                 {
-                    if (podd.Kategori.Equals(valdKategori) && podd != null)
-                    {
-                        string antalAvsnitt = podd.AvsnittLista.Count.ToString();
-
-                        ListViewItem katLista = new ListViewItem(podd.Namn);
-                        katLista.SubItems.Add(antalAvsnitt);
-                        katLista.SubItems.Add(podd.UppdateringsFrekvens);
-                        katLista.SubItems.Add(podd.Kategori);
-
-                        lvPodcast.Items.Add(katLista);
-
-                        enMinutTimer.Start();
-                        tvåMinuterTimer.Start();
-                        treMinuterTimer.Start();
-
-                    }
+                    katLista.SubItems.Add(antalAvsnitt);
+                    katLista.SubItems.Add(podd.UppdateringsFrekvens);
+                    katLista.SubItems.Add(podd.Kategori);
+                    lvPodcast.Items.Add(katLista);
+                    enMinutTimer.Start();
+                    tvåMinuterTimer.Start();
+                    treMinuterTimer.Start();
                 }
-
             }
         }
     }

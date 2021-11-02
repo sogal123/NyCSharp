@@ -36,6 +36,9 @@ namespace Model
             return "Detta objekt är en Podcast";
         }
 
+        
+
+
     }
 }
 
