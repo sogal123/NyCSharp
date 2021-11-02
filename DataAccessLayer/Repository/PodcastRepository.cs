@@ -63,35 +63,6 @@ namespace DataAccessLayer.Repository
         public void SaveChanges()
         {
             dataManager.SerializePodcast(podcastLista);
-            Console.WriteLine("Ticker för 10 sekunder fungerar");
-
         }
-
-        public List<Podcast> UppdateringsFrekvens60Sek()
-        {
-
-            var poddar60sek = new List<Podcast>();
-            try
-            {
-                foreach (Podcast podd in podcastLista)
-                {
-                    if (podd.UppdateringsFrekvens.Equals("1min"))
-                    {
-                        poddar60sek.Add(podd);
-
-                     }
-                }
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine("Hittar inga podcast inom det angivna intervallet. " + error.Message);
-            }
-
-            return poddar60sek;
-        }
-            
-        
-
-       
     }
 }

@@ -82,10 +82,10 @@ namespace BusinessLayer
             }
         }
 
-        public List<Podcast> poddarMed1minFrekvens()
-        {
-            return podcastRepository.UppdateringsFrekvens60Sek();
-        }
+        //public List<Podcast> poddarMed1minFrekvens()
+        //{
+        //    return podcastRepository.UppdateringsFrekvens60Sek();
+        //}
 
         }
     }
