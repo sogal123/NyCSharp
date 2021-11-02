@@ -24,6 +24,7 @@ namespace DataAccessLayer
 
                 {
                     xmlSerializer.Serialize(fileStreamOut, items);
+                    
                 }
             }
             catch (Exception)

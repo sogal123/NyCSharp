@@ -46,6 +46,7 @@ namespace Window
             enMinutTimer = new System.Timers.Timer();
             tvåMinuterTimer = new System.Timers.Timer();
             treMinuterTimer = new System.Timers.Timer();
+            Timer();
             //timer.Interval = 1000;
             //Timer_Tick();
             //timer.Tick += 
@@ -62,7 +63,7 @@ namespace Window
         {
             {
 
-                enMinutTimer = new System.Timers.Timer(60000);
+                enMinutTimer = new System.Timers.Timer(2000);
                 enMinutTimer.Elapsed += Timer_TickEnMinut;
                 enMinutTimer.AutoReset = true;
                 enMinutTimer.Enabled = true;
@@ -79,13 +80,41 @@ namespace Window
                 treMinuterTimer.Elapsed += Timer_TickTreMinuter;
 
                 //treMinuterTimer.Start();
+                Console.WriteLine("Timermetod körs");
             }
         }
 
         private void Timer_TickEnMinut(object sender, EventArgs e)
         {
+            //Console.WriteLine("Tickermetod körs");
+            foreach (var podd in podcastLista)
+            {
+                Podcast valdPodd = new Podcast();
+                
+                if (podd.UppdateringsFrekvens.Equals("1min"))
+                {
+                    
+                    valdPodd = podd;
 
-            podcastController.poddarMed1minFrekvens();
+                    XmlDocument xmlDocument = new XmlDocument();
+                    xmlDocument.Load(valdPodd.Url);
+
+                    XmlElement xmlElement = xmlDocument.DocumentElement;
+                    XmlNodeList nodes = xmlDocument.SelectNodes("//channel/item");
+                    podcastRepository.SaveChanges();
+                    Console.WriteLine("Podcastlista uppdaterad");
+                    //if (nodes.Count != valdPodd.AvsnittLista.Count())
+                    //{
+                    //    
+                    //    //Console.WriteLine("Ticker för en minut fungerar");
+
+                    //}
+
+                }
+            }
+
+
+            //podcastController.poddarMed1minFrekvens();
         }
 
         private void Timer_TickTvåMinuter(object sender, EventArgs e)

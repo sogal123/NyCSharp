@@ -63,6 +63,7 @@ namespace DataAccessLayer.Repository
         public void SaveChanges()
         {
             dataManager.SerializePodcast(podcastLista);
+            Console.WriteLine("Ticker för 10 sekunder fungerar");
 
         }
 
