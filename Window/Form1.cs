@@ -32,7 +32,8 @@ namespace Window
         int valdPoddInt = 1;
 
         public System.Timers.Timer enMinutTimer { get; set; }
-
+        public System.Timers.Timer tvåMinuterTimer { get; set; }
+        public System.Timers.Timer treMinuterTimer { get; set; }
         public Form1()
         {
             InitializeComponent();
@@ -43,6 +44,8 @@ namespace Window
             podcastLista = podcastController.getAll();
 
             enMinutTimer = new System.Timers.Timer();
+            tvåMinuterTimer = new System.Timers.Timer();
+            treMinuterTimer = new System.Timers.Timer();
             //timer.Interval = 1000;
             //Timer_Tick();
             //timer.Tick += 
@@ -59,24 +62,42 @@ namespace Window
         {
             {
 
-              enMinutTimer = new System.Timers.Timer(60000);
-              enMinutTimer.Elapsed += Timer_TickEnMinut;
-              enMinutTimer.AutoReset = true;
-              enMinutTimer.Enabled = true;
+                enMinutTimer = new System.Timers.Timer(60000);
+                enMinutTimer.Elapsed += Timer_TickEnMinut;
+                enMinutTimer.AutoReset = true;
+                enMinutTimer.Enabled = true;
+
+                tvåMinuterTimer = new System.Timers.Timer(120000);
+                tvåMinuterTimer.Elapsed += Timer_TickTvåMinuter;
+                tvåMinuterTimer.AutoReset = true;
+                tvåMinuterTimer.Enabled = true;
 
 
+                treMinuterTimer = new System.Timers.Timer(180000);
+                treMinuterTimer.Enabled = true;
+                treMinuterTimer.AutoReset = true;
+                treMinuterTimer.Elapsed += Timer_TickTreMinuter;
 
-                //timer.Enabled = true;
-                //timer.AutoReset = true;
-                //timer.Elapsed += Timer_Tick;
-                //timer.Start();
+                //treMinuterTimer.Start();
             }
         }
 
         private void Timer_TickEnMinut(object sender, EventArgs e)
         {
-           
 
+            podcastController.poddarMed1minFrekvens();
+        }
+
+        private void Timer_TickTvåMinuter(object sender, EventArgs e)
+        {
+
+            podcastController.poddarMed1minFrekvens();
+        }
+
+        private void Timer_TickTreMinuter(object sender, EventArgs e)
+        {
+
+            podcastController.poddarMed1minFrekvens();
         }
 
 

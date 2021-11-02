@@ -78,7 +78,7 @@ namespace DataAccessLayer.Repository
                     {
                         poddar60sek.Add(podd);
 
-                                            }
+                     }
                 }
             }
             catch (Exception error)
